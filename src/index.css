@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  /* Yellow Brand Color Palette - Diamond Assam Tea Company */
+  --color-primary-400: #f1c40f;
+  --color-primary-500: #f1c40f;
+  --color-primary-600: #f1c40f;
+  --color-primary-700: #f1c40f;
+  --color-primary-800: #f1c40f;
+}
+
+@layer base {
+  body {
+    @apply m-0 antialiased;
+  }
+}
+
+@layer components {
+  /* Container utility */
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+}
