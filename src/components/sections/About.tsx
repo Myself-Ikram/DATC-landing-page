@@ -25,12 +25,13 @@ export function About() {
           {/* Content - Right */}
           <div className="flex-1">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+              className="text-3xl md:text-4xl font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: baseDelay + 0.2 }}
             >
-              About Our Legacy
+              <span className="text-gray-900">About</span>{' '}
+              <span className="text-primary-500">Our Legacy</span>
             </motion.h2>
             <div className="space-y-4 text-gray-600">
               {[

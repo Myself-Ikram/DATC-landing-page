@@ -1,3 +1,47 @@
+# Diamond Assam Tea Company (DATC) Website
+
+This is the official website for Diamond Assam Tea Company, showcasing premium Assam teas from India's tea gardens.
+
+## Tech Stack
+
+- **React 19** - UI library
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+- **Swiper** - Touch slider library
+- **Lucide React** - Icon library
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── layout/       # Layout components (Header, Footer)
+│   └── sections/     # Page sections (Hero, About, Brands, etc.)
+├── pages/            # Page components
+├── index.css         # Global styles
+└── main.tsx          # Application entry point
+```
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

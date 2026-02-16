@@ -18,10 +18,10 @@ export function Home() {
         <Hero />
         <Promotion />
         <BrandsHeading />
+        <BrandMahekElachi />
         <BrandStarGoodLuck />
         <BrandDiamondMixture />
         <BrandStar />
-        <BrandMahekElachi />
         <About />
         <CompanyFeatures />
       </main>

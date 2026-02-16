@@ -5,7 +5,7 @@ export function BrandDiamondMixture() {
   return (
     <section className="py-12 md:py-16 bg-gray-200">
       <div className="container">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
           {/* Content - LEFT */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -23,7 +23,7 @@ export function BrandDiamondMixture() {
             <p className="text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed">
               Finest mixture of premium Assam tea leaves selected for their rich character and depth.
               A carefully crafted blend that delivers exceptional taste with a robust full-bodied flavor profile.
-              Perfect for tea connoisseurs who appreciate the bold authentic taste of traditional black tea.
+              Perfect for tea connoisseurs who appreciate bold authentic taste of traditional black tea.
             </p>
           </motion.div>
 
@@ -35,11 +35,15 @@ export function BrandDiamondMixture() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex-1 flex justify-center"
           >
-            <img
-              src={IMAGES.brands.productGroup}
-              alt="Diamond Mixture Tea"
-              className="w-3/4 md:w-2/3 lg:w-1/2 h-auto"
-            />
+            <div className="relative w-full flex justify-center">
+              {/* Gray diamond shape decoration */}
+              <div className="absolute inset-4 bg-gray-300 transform rotate-40 opacity-50 shadow-lg"></div>
+              <img
+                src={IMAGES.brands.productGroup}
+                alt="Diamond Mixture Tea"
+                className="relative z-10 w-full max-w-[280px] md:max-w-[350px] lg:max-w-[400px] h-auto rounded-lg"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

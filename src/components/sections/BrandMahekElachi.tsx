@@ -5,7 +5,7 @@ export function BrandMahekElachi() {
   return (
     <section className="py-12 md:py-16 bg-green-100">
       <div className="container">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
           {/* Content - LEFT */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -22,7 +22,7 @@ export function BrandMahekElachi() {
             {/* Description */}
             <p className="text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed">
               Rich cardamom flavored tea made with premium quality elachi seeds for authentic aromatic experience.
-              A delightful blend that perfectly balances robust tea leaves with the fragrant essence of cardamom.
+              A delightful blend that perfectly balances robust tea leaves with fragrant essence of cardamom.
               Traditional recipe passed down through generations to deliver genuine taste that reminds you of home.
             </p>
           </motion.div>
@@ -35,11 +35,15 @@ export function BrandMahekElachi() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex-1 flex justify-center"
           >
-            <img
-              src={IMAGES.brands.productGroup}
-              alt="Mahek Elachi Tea"
-              className="w-3/4 md:w-2/3 lg:w-1/2 h-auto"
-            />
+            <div className="relative w-full flex justify-center">
+              {/* Green diamond shape decoration */}
+              <div className="absolute inset-4 bg-green-200 transform rotate-40 opacity-50 shadow-lg"></div>
+              <img
+                src={IMAGES.brands.productGroup}
+                alt="Mahek Elachi Tea"
+                className="relative z-10 w-full max-w-[280px] md:max-w-[350px] lg:max-w-[400px] h-auto rounded-lg"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

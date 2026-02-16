@@ -14,11 +14,15 @@ export function BrandStarGoodLuck() {
             transition={{ duration: 0.6 }}
             className="flex-1 flex justify-center"
           >
-            <img
-              src={IMAGES.brands.productGroup}
-              alt="Star GoodLuck Tea"
-              className="w-3/4 md:w-2/3 lg:w-1/2 h-auto"
-            />
+            <div className="relative w-full flex justify-center">
+              {/* Yellow diamond shape decoration */}
+              <div className="absolute inset-4 bg-yellow-200 transform rotate-40 opacity-50 shadow-lg"></div>
+              <img
+                src={IMAGES.brands.productGroup}
+                alt="Star GoodLuck Tea"
+                className="relative z-10 w-full max-w-[280px] md:max-w-[350px] lg:max-w-[400px] h-auto rounded-lg"
+              />
+            </div>
           </motion.div>
 
           {/* Content - RIGHT */}

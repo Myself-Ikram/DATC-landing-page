@@ -1,10 +1,7 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Coffee } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { company } from '../../data/company';
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
