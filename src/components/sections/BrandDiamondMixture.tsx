@@ -39,7 +39,7 @@ export function BrandDiamondMixture() {
               {/* Gray diamond shape decoration */}
               <div className="absolute inset-4 bg-gray-300 transform rotate-40 opacity-50 shadow-lg"></div>
               <img
-                src={IMAGES.brands.productGroup}
+                src={IMAGES.brands.daimondAssamTea}
                 alt="Diamond Mixture Tea"
                 className="relative z-10 w-full max-w-[280px] md:max-w-[350px] lg:max-w-[400px] h-auto rounded-lg"
               />

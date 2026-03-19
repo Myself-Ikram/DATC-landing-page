@@ -18,10 +18,10 @@ export function BrandStar() {
               {/* Pink diamond shape decoration */}
               <div className="absolute inset-4 bg-pink-200 transform rotate-40 opacity-50 shadow-lg"></div>
               <img
-                src={IMAGES.brands.productGroup}
+                src={IMAGES.brands.daimondAssamTea}
                 alt="Star Tea"
                 className="relative z-10 w-full max-w-[280px] md:max-w-[350px] lg:max-w-[400px] h-auto rounded-lg"
-              />
+              />  
             </div>
           </motion.div>
 

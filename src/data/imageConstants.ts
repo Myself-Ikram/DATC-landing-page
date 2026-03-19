@@ -8,7 +8,7 @@ export const IMAGES = {
     background: '',  // Add URL if needed, otherwise white bg
     womanTeaCup: 'https://images.unsplash.com/photo-15447872193-a0980143f2b?w=800&h=800&fit=crop',
     teaCup: 'https://images.unsplash.com/photo-1576092734374-7b946997c61b?w=400&h=400&fit=crop',
-    main: '/main.jpg',  // ⭐ MAIN PAGE IMAGE - UPDATE IF NEEDED ⭐
+    main: '/star-goodluck-tea-group-full.png',  // ⭐ MAIN PAGE IMAGE - UPDATE IF NEEDED ⭐
   },
 
   // ========== PRODUCTS (6 products shown in design) ==========
@@ -83,6 +83,13 @@ export const IMAGES = {
   // ========== BRANDS SECTION ==========
   brands: {
     productGroup: '/prodcut-group.png', // ⭐ BRANDS IMAGE - UPDATE IF NEEDED ⭐
+    mahek: '/mahek.png', 
+    starGoodluckTea:'/star-goodluck-tea-big.png',
+    starGoodluckTeaGroup:'/star-goodluck-tea-group-full.png',
+    daimondAssamTea:'/dmt.png',
+    daimondAssamTeaGroup:'/dmt-group.png',
+    starTea:'/star-tea-group.png',
+
   },
 
   // ========== NEWSLETTER / FOOTER ==========
