@@ -24,7 +24,19 @@ export function Header() {
             className="h-12 w-auto"
           />
           <p className="text-base md:text-xl lg:text-2xl text-gray-900 font-serif">
-            Diamond Assam Tea Company
+            {["Diamond", "Assam", "Tea", "Company"].map((word, index) => (
+              <span key={index}>
+                {index > 0 && ' '}
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                  className="inline-block"
+                >
+                  {word}
+                </motion.span>
+              </span>
+            ))}
           </p>
         </motion.a>
 

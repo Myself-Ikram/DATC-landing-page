@@ -10,15 +10,15 @@ export function About() {
         <div className="flex flex-col md:flex-row items-center gap-12">
           {/* Image - Left */}
           <motion.div
-            className="flex-1"
+            className="flex-1 flex items-center justify-center"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: baseDelay }}
           >
             <img
-                src={IMAGES.hero.main}
+                src={IMAGES.about.teaPreparation}
                 alt="Diamond Assam Tea Company"
-                className="w-full h-auto rounded-lg shadow-md"
+                className="w-1/2  h-auto rounded-lg shadow-md"
               />
           </motion.div>
 

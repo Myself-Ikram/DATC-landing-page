@@ -77,7 +77,7 @@ export const IMAGES = {
 
   // ========== ABOUT SECTION ==========
   about: {
-    teaPreparation: 'https://images.unsplash.com/photo-1563826878428-0dd23f0f7e3?w=800&h=600&fit=crop', // ⭐ UPDATE THIS URL ⭐
+    teaPreparation: '/main.png', // ⭐ UPDATE THIS URL ⭐
   },
 
   // ========== BRANDS SECTION ==========
@@ -96,6 +96,7 @@ export const IMAGES = {
   footer: {
     logo: '/main.png', // Company logo
   },
+  
 };
 
 // ========== TYPES FOR USE IN COMPONENTS ==========
