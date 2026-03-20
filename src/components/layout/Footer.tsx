@@ -1,10 +1,19 @@
+import { IMAGES } from '../../data/imageConstants';
+
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 py-12">
       <div className="container text-center">
         {/* Company Name and Description */}
         <div className="max-w-2xl mx-auto">
-          <h3 className="text-xl font-bold text-white mb-4">Diamond Assam Tea Company</h3>
+          <img
+            src={IMAGES.footer.logo}
+            alt="Diamond Assam Tea Company"
+            className="mx-auto mb-2 h-16 w-auto"
+          />
+          <p className="text-lg font-bold text-white mb-2">
+            Diamond Assam Tea Company
+          </p>
           <p className="text-sm leading-relaxed">
             Premium Assam teas delivered to your doorstep. Experience the finest quality teas from India's tea gardens.
           </p>
@@ -35,8 +44,9 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="text-sm pt-6 mt-6">
-          <p>&copy; 2025 Diamond Assam Tea Company. All rights reserved.</p>
+        <div className="text-sm pt-6 mt-6 flex items-center justify-center gap-3">
+          Diamond Assam Tea Company
+          <p>&copy; 2025 All rights reserved.</p>
         </div>
       </div>
     </footer>

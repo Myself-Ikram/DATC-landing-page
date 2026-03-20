@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { company } from '../../data/company';
+import { IMAGES } from '../../data/imageConstants';
 
 export function Header() {
 
@@ -7,33 +7,26 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <nav className="container flex items-center justify-between py-4">
         {/* Logo - Left */}
-        <div className="flex flex-col gap-3">
-          <motion.div
-            className="text-primary-500 font-bold text-xl md:text-2xl  overflow-hidden"
-            initial={{ opacity: 1 }}
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.2 }
-            }}
-          >
-            {company.name.split('').map((letter, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{
-                  duration: 0.2,
-                  delay: index * 0.04,
-                  ease: "easeOut"
-                }}
-                className="inline-block"
-                style={{ whiteSpace: 'pre' }}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
+        <motion.a
+          href="/"
+          className="flex flex-row items-center gap-3"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          whileHover={{
+            scale: 1.05,
+            transition: { duration: 0.2 }
+          }}
+        >
+          <img
+            src={IMAGES.footer.logo}
+            alt="Diamond Assam Tea Company"
+            className="h-12 w-auto"
+          />
+          <p className="text-base md:text-xl lg:text-2xl text-gray-900 font-serif">
+            Diamond Assam Tea Company
+          </p>
+        </motion.a>
 
         {/* Navigation Menu - Center */}
         <ul className="hidden md:flex items-center gap-8">
