@@ -88,7 +88,7 @@ export const IMAGES = {
     starGoodluckTeaGroup:'/star-goodluck-tea-group-full.png',
     daimondAssamTea:'/dmt.png',
     daimondAssamTeaGroup:'/dmt-group.png',
-    starTea:'/star-tea-group.png',
+    starTea:'/star.png',
 
   },
 
