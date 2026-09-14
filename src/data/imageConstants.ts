@@ -77,7 +77,7 @@ export const IMAGES = {
 
   // ========== ABOUT SECTION ==========
   about: {
-    teaPreparation: '/main.png', // ⭐ UPDATE THIS URL ⭐
+    teaPreparation: '/all-products-with-bg.png', // ⭐ UPDATE THIS URL ⭐
   },
 
   // ========== BRANDS SECTION ==========

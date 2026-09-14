@@ -18,7 +18,7 @@ export function About() {
             <img
                 src={IMAGES.about.teaPreparation}
                 alt="Diamond Assam Tea Company"
-                className="w-1/2  h-auto rounded-lg shadow-md"
+                className="h-auto rounded-lg shadow-md"
               />
           </motion.div>
 
