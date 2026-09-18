@@ -1,115 +1,152 @@
+import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Phone } from 'lucide-react';
-import { IMAGES } from '../../data/imageConstants';
+import { ChevronDown } from 'lucide-react';
+import { company } from '../../data/company';
+import gsap from 'gsap';
 
 export function Hero() {
-  const headline = "Open up your senses with a cup of";
-  const tagline = "awesome tea";
-  const description = "Experience the finest quality Assam teas, carefully selected and crafted to deliver an unforgettable tea experience.";
+  const heroRef = useRef<HTMLElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
-  // Calculate delay: header logo completes at ~1s, start hero at 0.8s
-  const baseDelay = 0.8;
+  useEffect(() => {
+    // Parallax tilt on mouse move (desktop only)
+    if (window.innerWidth < 768) return;
 
-  const headlineWords = headline.split(' ');
-  const taglineWords = tagline.split(' ');
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!imageRef.current) return;
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+
+      const xPercent = (clientX / innerWidth - 0.5) * 2;
+      const yPercent = (clientY / innerHeight - 0.5) * 2;
+
+      gsap.to(imageRef.current, {
+        rotateY: xPercent * 5,
+        rotateX: -yPercent * 5,
+        duration: 0.8,
+        ease: 'power2.out',
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const headlineWords = company.tagline.split(' ');
 
   return (
-    <section className="bg-white py-20">
-      <div className="container flex flex-col items-center">
-        {/* Image - First Row */}
-        <div className="flex-1 flex justify-center mb-8">
-          <motion.div
-            className="flex-1 relative"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.6, delay: baseDelay }}
-          >
-            {/* Green diamond shape decoration */}
-            <div className="absolute -inset-2 bg-primary-500 transform rotate-45 opacity-10"></div>
-            <img
-              src={IMAGES.hero.main}
-              alt="Diamond Assam Tea Company"
-              className="relative z-10 w-full max-w-md h-auto rounded-lg"
-            />
-          </motion.div>
-        </div>
+    <section
+      ref={heroRef}
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-900/95 to-dark-900 z-[1]" />
 
-        {/* Text Content - Second Row */}
-        <div className="flex-1 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-            {headlineWords.map((word, index) => (
-              <span key={index}>
-                {index > 0 && ' '}
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: baseDelay + index * 0.15 }}
-                  className="inline-block"
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-            {' '}
-            <span className="text-primary-500">
-              {taglineWords.map((word, index) => (
-                <span key={index}>
-                  {index > 0 && ' '}
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3, delay: baseDelay + (headlineWords.length + 1) * 0.15 + index * 0.15 }}
-                    className="inline-block"
-                  >
-                    {word}
-                  </motion.span>
-                </span>
-              ))}
+      {/* Radial glow behind product */}
+      <div className="absolute inset-0 z-[2]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[120px]" />
+      </div>
+
+      {/* Content */}
+      <div className="container relative z-10 flex flex-col items-center text-center pt-20">
+        {/* Subtitle */}
+        <motion.p
+          className="text-gold-400 text-xs sm:text-sm tracking-[0.3em] uppercase mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          Since {company.founded} · Premium Export Quality
+        </motion.p>
+
+        {/* Main Headline */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+          {headlineWords.map((word, index) => (
+            <span key={index}>
+              {index > 0 && ' '}
+              <motion.span
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.6 + index * 0.15,
+                  ease: 'easeOut',
+                }}
+                className="inline-block shimmer"
+              >
+                {word}
+              </motion.span>
             </span>
-          </h1>
-          <p className="text-gray-600 text-lg mb-8 max-w-xl">
-            {description.split(' ').map((word, index) => (
-              <span key={index}>
-                {index > 0 && ' '}
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: baseDelay + (headlineWords.length + taglineWords.length + 1) * 0.1 }}
-                  className="inline-block"
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-          </p>
-          <div className="flex flex-row flex-wrap justify-center gap-4">
-            <motion.a
-              href="#products"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: baseDelay + 2.2, ease: "easeOut" }}
-              whileHover={{ scale: 1.05 }}
-              className="border-2 border-primary-500 text-primary-500 px-8 py-3 rounded font-medium hover:bg-primary-50 transition-colors inline-block text-center scroll-smooth"
-            >
-              Discover
-            </motion.a>
-            <motion.a
-              href="tel:+919985342783"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: [1, 1.08, 1] }}
-              transition={{
-                opacity: { duration: 0.5, delay: baseDelay + 2.3, ease: "easeOut" },
-                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-primary-500 text-white px-8 py-3 rounded font-medium hover:bg-primary-600 transition-colors inline-flex items-center gap-2"
-            >
-              <Phone className="w-4 h-4" />
-              Call Us
-            </motion.a>
-          </div>
-        </div>
+          ))}
+        </h1>
+
+        {/* Description */}
+        <motion.p
+          className="text-gray-400 text-base sm:text-lg max-w-xl mb-10 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+        >
+          {company.subtitle}
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.5 }}
+        >
+          <a href="#brands" className="btn-gold" onClick={(e) => {
+            e.preventDefault();
+            document.querySelector('#brands')?.scrollIntoView({ behavior: 'smooth' });
+          }}>
+            Explore Brands
+          </a>
+          <a href={`tel:${company.phone}`} className="btn-outline-gold inline-flex items-center gap-2">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            Call Us
+          </a>
+        </motion.div>
+
+        {/* Product Image with 3D tilt effect */}
+        <motion.div
+          ref={imageRef}
+          className="relative perspective-[1000px]"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1.0, ease: 'easeOut' }}
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          <img
+            src="/all-products-with-bg.png"
+            alt="Diamond Assam Tea Company Products"
+            className="w-full max-w-2xl h-auto product-glow rounded-2xl"
+          />
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark-900 to-transparent" />
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="mt-8 scroll-indicator"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.0, duration: 0.5 }}
+        >
+          <a
+            href="#brands"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#brands')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="flex flex-col items-center gap-2 text-gold-500/50 hover:text-gold-400 transition-colors"
+          >
+            <span className="text-xs tracking-widest uppercase">Scroll</span>
+            <ChevronDown size={20} />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

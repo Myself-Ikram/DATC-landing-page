@@ -1,79 +1,120 @@
-import { IMAGES } from '../../data/imageConstants';
+import { Sparkles, Phone, MessageCircle, MapPin, Building2, ExternalLink } from 'lucide-react';
+import { company } from '../../data/company';
 
 export function Promotion() {
   return (
-    <section
-      className="relative py-16 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${IMAGES.promotion.background})` }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-primary-500/90"></div>
+    <section id="contact" className="relative py-24 sm:py-32 bg-[#060807] text-white overflow-hidden">
+      {/* Background ambient gradient */}
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[400px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          {/* Left Section */}
-          <div className="text-white text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Want to Be Part of Our Journey?
-            </h2>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-stretch">
+          {/* Left Column - Dealership & Partnership Details */}
+          <div className="lg:col-span-6 flex flex-col justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-500/25 bg-amber-500/10 text-amber-400 text-xs tracking-widest uppercase mb-4">
+                <Sparkles size={14} />
+                Dealership & Wholesale Desk
+              </div>
 
-            <p className="text-lg text-white/90 mb-8">
-              Join us as a distributor or franchise partner and become a part
-              of our growing family.
-            </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white font-bold mb-6 tracking-tight">
+                Stock the Flagship Blends <span className="text-amber-400">in Your Store</span>
+              </h2>
 
-            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-4">
-              {/* Distributor */}
+              <p className="text-white/70 text-base sm:text-lg leading-relaxed mb-8">
+                Join our regional distribution network across South India. Supply your retailers, hotels, and stalls with high-demand <strong>Mahek Elachi Tea</strong> and <strong>Star GoodLuck Tea</strong> backed by 25+ years of verified brand trust.
+              </p>
+
+              {/* Partnership Highlights */}
+              <div className="space-y-4 mb-8">
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
+                    <Building2 size={20} />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-1">
+                      Distributor & Wholesale Benefits
+                    </h4>
+                    <p className="text-xs text-white/60 leading-relaxed">
+                      Competitive wholesale margins, fresh consignment dispatch, point-of-sale branding, and dedicated account support.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
+                    <MapPin size={20} />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-1">
+                      Packaging Plant & Central Distribution
+                    </h4>
+                    <p className="text-xs text-white/60 leading-relaxed">
+                      {company.location}. Prompt logistics to Mahbubnagar, Vikarabad, Narayanpet, and adjoining regions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
-                href="tel:+911234567890"
-                className="bg-white text-primary-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                href={`tel:${company.phone}`}
+                className="px-6 py-3 rounded-full font-bold text-sm bg-amber-500 hover:bg-amber-400 text-black inline-flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7h-1v1h1V7zm0 2h-1v1h1V9zm-3-2H9v1h2V7zm0 2H9v1h2V9z" />
-                </svg>
-                Become a Distributor
+                <Phone size={16} />
+                <span>Call: {company.phoneDisplay}</span>
               </a>
 
-              {/* Franchise */}
               <a
-                href="tel:+911234567890"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-500 transition-colors flex items-center justify-center gap-2"
+                href={`https://wa.me/${company.whatsappNumber}?text=${encodeURIComponent(
+                  'Hello Diamond Assam Tea Company, I am interested in wholesale/distribution for Mahek Elachi and Star GoodLuck.'
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-full font-bold text-sm bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30 inline-flex items-center gap-2 transition-all"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2H6a1 1 0 01-1-1V4zm3 1h6v4H7V5zm6 6H7v2h6v-2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Franchise
+                <MessageCircle size={16} />
+                <span>WhatsApp Wholesale Desk</span>
               </a>
             </div>
           </div>
 
-          {/* Right Section - Google Map */}
-          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
-            <iframe
-              title="Company Location"
-              src="https://maps.google.com/maps?q=16.747330,77.985944&z=18&output=embed"
-              width="100%"
-              height="420"
-              style={{ border: 0 }}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full"
-            />
+          {/* Right Column - Google Map Embed in Luxury Frame */}
+          <div className="lg:col-span-6 flex flex-col">
+            <div className="rounded-3xl p-3 border border-white/10 shadow-2xl flex-1 flex flex-col min-h-[420px] bg-black/40 backdrop-blur-xl relative overflow-hidden">
+              {/* Map Top Bar */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-black/60 rounded-t-2xl">
+                <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                  <span>Packaging & Distribution Location</span>
+                </div>
+                <a
+                  href="https://maps.google.com/maps?q=16.747330,77.985944&z=18"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-white/60 hover:text-amber-400 flex items-center gap-1 transition-colors"
+                >
+                  Open in Google Maps <ExternalLink size={12} />
+                </a>
+              </div>
+
+              {/* Iframe */}
+              <div className="relative flex-1 w-full rounded-b-2xl overflow-hidden min-h-[350px]">
+                <iframe
+                  title="Diamond Assam Tea Company Location"
+                  src="https://maps.google.com/maps?q=16.747330,77.985944&z=17&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '350px' }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full grayscale-[25%] contrast-[1.05] filter"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

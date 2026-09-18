@@ -1,33 +1,250 @@
 @import "tailwindcss";
 
 @theme {
-  /* Yellow Brand Color Palette - Diamond Assam Tea Company */
-  --color-primary-400: #f1c40f;
-  --color-primary-500: #f1c40f;
-  --color-primary-600: #f1c40f;
-  --color-primary-700: #f1c40f;
-  --color-primary-800: #f1c40f;
+  /* Dark Luxury Color Palette */
+  --color-dark-950: #050505;
+  --color-dark-900: #0a0a0a;
+  --color-dark-800: #111111;
+  --color-dark-700: #1a1a1a;
+  --color-dark-600: #222222;
+  --color-dark-500: #2a2a2a;
+
+  /* Gold Accent Palette */
+  --color-gold-300: #f5e6c8;
+  --color-gold-400: #e8c973;
+  --color-gold-500: #d4a853;
+  --color-gold-600: #b8922e;
+  --color-gold-700: #9a7a24;
+
+  /* Brand Accent Colors */
+  --color-brand-green: #2d7a3a;
+  --color-brand-red: #c0392b;
+  --color-brand-yellow: #f1c40f;
+  --color-brand-pink: #c2185b;
 }
 
 @layer base {
   html {
     @apply overflow-x-hidden;
+    scroll-behavior: smooth;
   }
 
   body {
     @apply m-0 antialiased overflow-x-hidden;
     font-family: 'Source Sans 3', sans-serif;
+    background-color: #0a0a0a;
+    color: #b8b8b8;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Prata', serif;
+    color: #ffffff;
+  }
+
+  ::selection {
+    background: rgba(212, 168, 83, 0.3);
+    color: #f5e6c8;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(212, 168, 83, 0.4);
+    border-radius: 3px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e8c973;
   }
 }
 
 @layer components {
-  /* Container utility */
   .container {
     @apply mx-auto px-4 sm:px-6 lg:px-8;
     max-width: 1280px;
   }
+
+  /* Glassmorphism card */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(212, 168, 83, 0.2);
+    box-shadow: 0 8px 32px rgba(212, 168, 83, 0.08);
+    transform: translateY(-4px);
+  }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #f5e6c8 0%, #d4a853 50%, #e8c973 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gold shimmer animation */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #d4a853 0%,
+      #f5e6c8 25%,
+      #d4a853 50%,
+      #f5e6c8 75%,
+      #d4a853 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  /* Glow effect for product images */
+  .product-glow {
+    filter: drop-shadow(0 0 20px rgba(212, 168, 83, 0.15));
+    transition: filter 0.4s ease;
+  }
+
+  .product-glow:hover {
+    filter: drop-shadow(0 0 40px rgba(212, 168, 83, 0.3));
+  }
+
+  /* Section divider */
+  .section-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4a853, transparent);
+    margin: 0 auto;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* Button styles */
+  .btn-gold {
+    @apply px-8 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(135deg, #d4a853 0%, #b8922e 100%);
+    color: #0a0a0a;
+    border: none;
+  }
+
+  .btn-gold:hover {
+    background: linear-gradient(135deg, #e8c973 0%, #d4a853 100%);
+    box-shadow: 0 4px 20px rgba(212, 168, 83, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-gold {
+    @apply px-8 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: transparent;
+    color: #d4a853;
+    border: 1.5px solid rgba(212, 168, 83, 0.4);
+  }
+
+  .btn-outline-gold:hover {
+    border-color: #d4a853;
+    background: rgba(212, 168, 83, 0.08);
+    box-shadow: 0 4px 20px rgba(212, 168, 83, 0.12);
+    transform: translateY(-2px);
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Floating Call Button Animations */
+@keyframes floatCallPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes floatCallRing {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+
+@keyframes callWiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  8%, 24% {
+    transform: rotate(-14deg);
+  }
+  16%, 32% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-call-pulse {
+  animation: floatCallPulse 2.4s ease-in-out infinite;
+}
+
+.animate-call-ring {
+  animation: floatCallRing 2.4s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+}
+
+.animate-call-wiggle {
+  animation: callWiggle 3.2s ease-in-out infinite;
 }

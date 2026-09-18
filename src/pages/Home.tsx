@@ -1,31 +1,34 @@
+import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { ToastProvider } from '../components/ui/Toast';
 import { Header } from '../components/layout/Header';
-import { Footer } from '../components/layout/Footer';
-import { Hero } from '../components/sections/Hero';
-import { Promotion } from '../components/sections/Promotion';
-import { About } from '../components/sections/About';
-import { CompanyFeatures } from '../components/sections/CompanyFeatures';
-import { BrandsHeading } from '../components/sections/BrandsHeading';
-import { BrandStarGoodLuck } from '../components/sections/BrandStarGoodLuck';
-import { BrandDiamondMixture } from '../components/sections/BrandDiamondMixture';
-import { BrandStar } from '../components/sections/BrandStar';
-import { BrandMahekElachi } from '../components/sections/BrandMahekElachi';
+import { MultiProductShowcase } from '../components/sections/MultiProductShowcase';
+import { Preloader } from '../components/ui/Preloader';
+import { flagshipProducts } from '../data/company';
 
 export function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+
+  const activeProduct = flagshipProducts[currentProductIndex] || flagshipProducts[0];
+
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Promotion />
-        <BrandsHeading />
-        <BrandMahekElachi />
-        <BrandStarGoodLuck />
-        <BrandDiamondMixture />
-        <BrandStar />
-        <About />
-        <CompanyFeatures />
-      </main>
-      <Footer />
-    </>
+    <ToastProvider>
+      <div className="relative w-full h-[100dvh] overflow-hidden bg-[#050706] text-white selection:bg-amber-500/30 selection:text-amber-200">
+        {/* Page Load Preloader */}
+        <AnimatePresence mode="wait">
+          {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+        </AnimatePresence>
+
+        {/* Global Navigation Header with Synchronized Dynamic Brand Colors */}
+        <Header activeProduct={activeProduct} />
+
+        {/* Multi-Brand Flagship Showcase */}
+        <main className="w-full h-full">
+          <MultiProductShowcase onProductChange={setCurrentProductIndex} />
+        </main>
+      </div>
+    </ToastProvider>
   );
 }
+
