@@ -1,34 +1,39 @@
-import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { ToastProvider } from '../components/ui/Toast';
 import { Header } from '../components/layout/Header';
 import { MultiProductShowcase } from '../components/sections/MultiProductShowcase';
-import { Preloader } from '../components/ui/Preloader';
-import { flagshipProducts } from '../data/company';
+import { flagshipProducts, type FlagshipProduct } from '../data/company';
 
-export function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+interface HomeProps {
+  activeProduct?: FlagshipProduct;
+  onProductChange?: (index: number) => void;
+  onNavigate?: (page: 'home' | 'about' | 'contact') => void;
+}
 
-  const activeProduct = flagshipProducts[currentProductIndex] || flagshipProducts[0];
-
+export function Home({
+  activeProduct = flagshipProducts[0],
+  onProductChange,
+  onNavigate,
+}: HomeProps) {
   return (
-    <ToastProvider>
-      <div className="relative w-full h-[100dvh] overflow-hidden bg-[#050706] text-white selection:bg-amber-500/30 selection:text-amber-200">
-        {/* Page Load Preloader */}
-        <AnimatePresence mode="wait">
-          {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-        </AnimatePresence>
+    <div className="relative w-full h-[100dvh] overflow-hidden bg-[#050706] text-white selection:bg-amber-500/30 selection:text-amber-200">
+      {/* Global Navigation Header with Synchronized Dynamic Brand Colors */}
+      <Header
+        activeProduct={activeProduct}
+        activeTab="products"
+        onTabChange={(tab) => {
+          if (tab === 'about') {
+            onNavigate?.('about');
+          } else if (tab === 'contact') {
+            onNavigate?.('contact');
+          }
+        }}
+      />
 
-        {/* Global Navigation Header with Synchronized Dynamic Brand Colors */}
-        <Header activeProduct={activeProduct} />
-
-        {/* Multi-Brand Flagship Showcase */}
-        <main className="w-full h-full">
-          <MultiProductShowcase onProductChange={setCurrentProductIndex} />
-        </main>
-      </div>
-    </ToastProvider>
+      {/* Multi-Brand Flagship Showcase */}
+      <main className="w-full h-full">
+        <MultiProductShowcase onProductChange={onProductChange} />
+      </main>
+    </div>
   );
 }
+
 

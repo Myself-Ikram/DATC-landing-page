@@ -19,9 +19,17 @@ function getTimeOfDayWord(): string {
 
 interface PreloaderProps {
   onComplete: () => void;
+  title?: string;
+  tagline?: string;
+  isPageTransition?: boolean;
 }
 
-export function Preloader({ onComplete }: PreloaderProps) {
+export function Preloader({
+  onComplete,
+  title,
+  tagline,
+  isPageTransition = false,
+}: PreloaderProps) {
   const [index, setIndex] = useState(0);
   const [timeWord, setTimeWord] = useState<string>('subah');
   const [dimension, setDimension] = useState({
@@ -44,8 +52,16 @@ export function Preloader({ onComplete }: PreloaderProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Cycle through greetings then trigger exit animation
+  // For page transition, wait 1100ms and then call onComplete
+  // For initial page load, cycle through greetings then trigger exit animation
   useEffect(() => {
+    if (isPageTransition || title) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, 1100);
+      return () => clearTimeout(timer);
+    }
+
     if (index === words.length - 1) {
       const finishTimeout = setTimeout(() => {
         onComplete();
@@ -61,7 +77,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
     );
 
     return () => clearTimeout(timeout);
-  }, [index, onComplete]);
+  }, [index, onComplete, isPageTransition, title]);
 
   // Dennis Snellenberg's iconic SVG Bezier curve exit
   const w = dimension.width;
@@ -77,15 +93,16 @@ export function Preloader({ onComplete }: PreloaderProps) {
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as const, delay: 0.25 },
+      transition: { duration: 0.65, ease: [0.76, 0, 0.24, 1] as const, delay: 0.08 },
     },
   };
 
   const slideUpVariants = {
-    initial: { top: 0 },
+    initial: { top: 0, opacity: isPageTransition ? 0 : 1 },
+    animate: { top: 0, opacity: 1, transition: { duration: 0.25 } },
     exit: {
       top: '-100vh',
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const, delay: 0.2 },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] as const, delay: 0.08 },
     },
   };
 
@@ -94,7 +111,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
     enter: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.3 },
+      transition: { duration: 0.35, ease: 'easeOut' as const },
     },
     exit: {
       opacity: 0,
@@ -103,12 +120,13 @@ export function Preloader({ onComplete }: PreloaderProps) {
     },
   };
 
-  const displayText = words[index];
+  const displayText = title || words[index];
 
   return (
     <motion.div
       variants={slideUpVariants}
       initial="initial"
+      animate="animate"
       exit="exit"
       className="fixed inset-0 z-[99999] flex items-center justify-center pointer-events-none"
     >
@@ -129,7 +147,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
           />
         </motion.div>
 
-        {/* Greeting Text */}
+        {/* Title or Greeting Text */}
         <motion.p
           key={displayText}
           variants={textVariants}
@@ -141,20 +159,34 @@ export function Preloader({ onComplete }: PreloaderProps) {
           {displayText}
         </motion.p>
 
-        {/* Dynamic Tagline Just After Greeting */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, transition: { duration: 0.2 } }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="italic text-sm sm:text-base md:text-lg text-white/85 font-serif font-normal tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] max-w-lg mt-1"
-        >
-          &ldquo;Saari duniya ek taraf,{' '}
-          <span className="text-amber-400 font-semibold not-italic drop-shadow-[0_2px_10px_rgba(245,158,11,0.6)]">
-            {timeWord}
-          </span>{' '}
-          ki chai ek taraf&rdquo;
-        </motion.p>
+        {/* Dynamic Tagline or Custom Subtitle */}
+        {tagline !== undefined ? (
+          tagline ? (
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="italic text-sm sm:text-base md:text-lg text-white/85 font-serif font-normal tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] max-w-lg mt-1"
+            >
+              {tagline}
+            </motion.p>
+          ) : null
+        ) : (
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, transition: { duration: 0.2 } }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="italic text-sm sm:text-base md:text-lg text-white/85 font-serif font-normal tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] max-w-lg mt-1"
+          >
+            &ldquo;Saari duniya ek taraf,{' '}
+            <span className="text-amber-400 font-semibold not-italic drop-shadow-[0_2px_10px_rgba(245,158,11,0.6)]">
+              {timeWord}
+            </span>{' '}
+            ki chai ek taraf&rdquo;
+          </motion.p>
+        )}
       </div>
 
       {/* Dennis Snellenberg curved SVG background (Rich Black) */}

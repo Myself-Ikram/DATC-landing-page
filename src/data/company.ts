@@ -13,7 +13,8 @@ export const company = {
   founded: 2000,
   yearsOfService: '25+',
   districts: '5+',
-  googleMapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122248.8239012355!2d77.9304381832049!3d16.745851410657155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bca279a32c2862d%3A0x6333bf6fdbd42fa3!2sMahbubnagar%2C%20Telangana!5e0!3m2!1sen!2sin!4v1710500000000!5m2!1sen!2sin',
+  googleMapUrl: 'https://maps.app.goo.gl/NLrYzwxVEsbgeesc7',
+  googleMapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.5958!2d77.9836853!3d16.7470061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bca27f4785dd5e3%3A0x8bf704f662f403c!2sDIAMOND%20ASSAM%20TEA%20CO!5e0!3m2!1sen!2sin!4v1710500000000!5m2!1sen!2sin',
   socialMedia: {
     facebook: '#',
     instagram: '#',

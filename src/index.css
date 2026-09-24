@@ -25,15 +25,16 @@
 
 @layer base {
   html {
-    @apply overflow-x-hidden;
+    @apply overflow-x-clip;
     scroll-behavior: smooth;
   }
 
   body {
-    @apply m-0 antialiased overflow-x-hidden;
+    @apply m-0 antialiased overflow-x-clip;
     font-family: 'Source Sans 3', sans-serif;
     background-color: #0a0a0a;
     color: #b8b8b8;
+    -webkit-overflow-scrolling: touch;
   }
 
   h1, h2, h3, h4, h5, h6 {

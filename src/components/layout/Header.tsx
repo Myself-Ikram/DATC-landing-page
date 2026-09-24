@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, LayoutGroup } from 'framer-motion';
 import { Phone } from 'lucide-react';
 import { company, type FlagshipProduct } from '../../data/company';
 
-type NavTab = 'products' | 'about' | 'contact';
+export type NavTab = 'products' | 'about' | 'contact';
 
 const NAV_TABS = [
   { id: 'products', label: 'Products' },
@@ -13,32 +13,43 @@ const NAV_TABS = [
 
 interface HeaderProps {
   activeProduct?: FlagshipProduct;
+  activeTab?: NavTab;
+  onTabChange?: (tab: NavTab) => void;
 }
 
-export function Header({ activeProduct }: HeaderProps) {
-  const [activeNav, setActiveNav] = useState<NavTab>('products');
+export function Header({ activeProduct, activeTab = 'products', onTabChange }: HeaderProps) {
+  const [activeNav, setActiveNav] = useState<NavTab>(activeTab);
+
+  useEffect(() => {
+    setActiveNav(activeTab);
+  }, [activeTab]);
 
   // Dynamic theme accent color synchronized with current showcase product
   const currentAccent = activeProduct?.accentColor || '#10B981';
 
   const handleNavClick = (tab: NavTab) => {
     setActiveNav(tab);
+    onTabChange?.(tab);
   };
 
   return (
     <>
       {/* Top Header Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-40 px-3 sm:px-8 pt-1 sm:pt-2 md:pt-0 pb-2 sm:pb-3 bg-transparent pointer-events-none">
+      <header className={`fixed top-0 left-0 right-0 z-40 px-3 sm:px-8 pt-1 sm:pt-2 md:pt-0 pb-3 sm:pb-4 pointer-events-none transition-all duration-300 ${
+        activeTab === 'contact'
+          ? 'bg-gradient-to-b from-[#050706]/95 via-[#050706]/65 to-transparent backdrop-blur-[1px]'
+          : 'bg-transparent'
+      }`}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between relative">
-          {/* Row 1 for sm & lower: Brand Logo on Top Left */}
-          <div className="flex items-center justify-start pointer-events-auto">
+          {/* Row 1 for sm & lower: Brand Logo Centered on Mobile, Left-aligned on Desktop */}
+          <div className="flex items-center justify-center md:justify-start pointer-events-auto">
             <a
               href="/"
-              className="flex items-center group"
+              className="flex items-center group cursor-pointer"
               aria-label={company.name}
               onClick={(e) => {
                 e.preventDefault();
-                setActiveNav('products');
+                handleNavClick('products');
               }}
             >
               <img

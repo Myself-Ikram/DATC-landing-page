@@ -378,14 +378,18 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
       const SWIPE_THRESHOLD = 25; // Quick responsive flick
 
       if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > SWIPE_THRESHOLD) {
-        if (dy < 0 && currentRef.current < flagshipProducts.length - 1) {
-          goTo(currentRef.current + 1, 1);
+        if (dy < 0) {
+          if (currentRef.current < flagshipProducts.length - 1) {
+            goTo(currentRef.current + 1, 1);
+          }
         } else if (dy > 0 && currentRef.current > 0) {
           goTo(currentRef.current - 1, -1);
         }
       } else if (Math.abs(dx) > SWIPE_THRESHOLD) {
-        if (dx < 0 && currentRef.current < flagshipProducts.length - 1) {
-          goTo(currentRef.current + 1, 1);
+        if (dx < 0) {
+          if (currentRef.current < flagshipProducts.length - 1) {
+            goTo(currentRef.current + 1, 1);
+          }
         } else if (dx > 0 && currentRef.current > 0) {
           goTo(currentRef.current - 1, -1);
         }
@@ -398,20 +402,31 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     // Keyboard Arrow Keys
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-        if (currentRef.current < flagshipProducts.length - 1) goTo(currentRef.current + 1, 1);
+        if (currentRef.current < flagshipProducts.length - 1) {
+          goTo(currentRef.current + 1, 1);
+        }
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         if (currentRef.current > 0) goTo(currentRef.current - 1, -1);
       }
     };
 
+    const onTouchMove = (e: TouchEvent) => {
+      // Prevent browser from elastic bouncing / scrolling the viewport on mobile swipe
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+    };
+
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
     window.addEventListener('touchend', onTouchEnd, { passive: true });
     window.addEventListener('keydown', onKeyDown);
 
     return () => {
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('keydown', onKeyDown);
       if (wheelTimer) clearTimeout(wheelTimer);
@@ -486,7 +501,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     <div
       ref={rootRef}
       id="flagship-showcase"
-      className="relative w-full h-[100dvh] overflow-hidden select-none"
+      className="relative w-full h-[100dvh] overflow-hidden select-none touch-none overscroll-none"
       style={{
         background: 'radial-gradient(circle at center center, var(--bg-outer) 0%, var(--bg-inner) 85%)',
       }}
