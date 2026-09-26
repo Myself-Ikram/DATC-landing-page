@@ -29,7 +29,7 @@ function getPageTransitionMeta(page: Page) {
     case 'about':
       return {
         title: 'About Us',
-        tagline: `“${chaiQuotes[1]}”`,
+        tagline: `“${chaiQuotes[4]}”`,
       };
     case 'contact':
       return {
@@ -40,7 +40,7 @@ function getPageTransitionMeta(page: Page) {
     default:
       return {
         title: 'Our Products',
-        tagline: `“${chaiQuotes[2]}”`,
+        tagline: `“${chaiQuotes[1]}”`,
       };
   }
 }

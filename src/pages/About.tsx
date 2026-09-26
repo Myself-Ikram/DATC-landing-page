@@ -81,7 +81,7 @@ export function AboutPage({
         {/* ========================================================================= */}
         <TornPaperQuoteSection
           id="sukoon"
-          quote={chaiQuotes[1]}
+          quote={chaiQuotes[0]}
           filterId="tear-shadow-1"
           gradientId="paper-grad-1"
           flipHorizontal={false}
@@ -126,7 +126,7 @@ export function AboutPage({
         {/* ========================================================================= */}
         <TornPaperQuoteSection
           id="dost"
-          quote={chaiQuotes[2]}
+          quote={chaiQuotes[3]}
           filterId="tear-shadow-2"
           gradientId="paper-grad-2"
           flipHorizontal={true}
@@ -144,7 +144,7 @@ export function AboutPage({
         {/* ========================================================================= */}
         <TornPaperQuoteSection
           id="zindagi"
-          quote={chaiQuotes[3]}
+          quote={chaiQuotes[2]}
           filterId="tear-shadow-3"
           gradientId="paper-grad-3"
           flipHorizontal={false}
