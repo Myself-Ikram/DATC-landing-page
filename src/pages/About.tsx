@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Header } from '../components/layout/Header';
-import { Footer } from '../components/layout/Footer';
 import { flagshipProducts, type FlagshipProduct } from '../data/company';
 import { chaiQuotes } from '../data/chaiQuotes';
 import {
@@ -141,15 +140,23 @@ export function AboutPage({
         />
 
         {/* ========================================================================= */}
-        {/* SECTION 6: 🤝 Dealership & Distribution Partnership CTA                   */}
+        {/* SECTION 6: 🧾 Paper Tear Interstitial #3 — Zindagi & Chai                  */}
+        {/* ========================================================================= */}
+        <TornPaperQuoteSection
+          id="zindagi"
+          quote={chaiQuotes[3]}
+          filterId="tear-shadow-3"
+          gradientId="paper-grad-3"
+          flipHorizontal={false}
+        />
+
+        {/* ========================================================================= */}
+        {/* SECTION 7: 🤝 Dealership & Distribution Partnership CTA                   */}
         {/* ========================================================================= */}
         <DealershipCtaSection
           id="dealership"
         />
       </main>
-
-      {/* Standard Complete Site Footer */}
-      <Footer />
     </div>
   );
 }

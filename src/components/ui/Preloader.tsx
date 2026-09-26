@@ -202,3 +202,5 @@ export function Preloader({
     </motion.div>
   );
 }
+
+export default Preloader;

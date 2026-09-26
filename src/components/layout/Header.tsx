@@ -35,11 +35,7 @@ export function Header({ activeProduct, activeTab = 'products', onTabChange }: H
   return (
     <>
       {/* Top Header Navigation */}
-      <header className={`fixed top-0 left-0 right-0 z-40 px-3 sm:px-8 pt-1 sm:pt-2 md:pt-0 pb-3 sm:pb-4 pointer-events-none transition-all duration-300 ${
-        activeTab === 'contact'
-          ? 'bg-gradient-to-b from-[#050706]/95 via-[#050706]/65 to-transparent backdrop-blur-[1px]'
-          : 'bg-transparent'
-      }`}>
+      <header className="fixed top-0 left-0 right-0 z-40 px-3 sm:px-8 pt-1 sm:pt-2 md:pt-0 pb-3 sm:pb-4 pointer-events-none transition-all duration-300 bg-transparent">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between relative">
           {/* Row 1 for sm & lower: Brand Logo Centered on Mobile, Left-aligned on Desktop */}
           <div className="flex items-center justify-center md:justify-start pointer-events-auto">

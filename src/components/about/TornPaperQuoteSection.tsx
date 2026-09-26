@@ -40,7 +40,7 @@ export function TornPaperQuoteSection({
   subtext,
   flipHorizontal = false,
   filterId = 'tear-shadow',
-  bgColorClass = 'bg-[#FAF6ED]',
+  bgColorClass = 'bg-[#FAF0D0]',
 }: TornPaperQuoteSectionProps) {
   return (
     <section
