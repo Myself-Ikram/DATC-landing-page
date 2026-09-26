@@ -14,7 +14,7 @@ export function Home({
   onNavigate,
 }: HomeProps) {
   return (
-    <div className="relative w-full h-[100dvh] overflow-hidden bg-[#050706] text-white selection:bg-amber-500/30 selection:text-amber-200">
+    <div className="relative w-full h-[100dvh] overflow-hidden select-none">
       {/* Global Navigation Header with Synchronized Dynamic Brand Colors */}
       <Header
         activeProduct={activeProduct}

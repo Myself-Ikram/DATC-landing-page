@@ -85,7 +85,7 @@ function App() {
 
   return (
     <ToastProvider>
-      <div className={`relative w-full ${currentPage === 'contact' ? 'min-h-screen' : 'h-[100dvh] overflow-hidden overscroll-none touch-none'} bg-[#050706] text-white`}>
+      <div className={`relative w-full ${currentPage === 'home' ? 'h-[100dvh] overflow-hidden overscroll-none touch-none' : 'min-h-screen'} bg-[#050706] text-white`}>
         {/* Global Page Load & Transition Preloader Layer */}
         <AnimatePresence mode="wait">
           {initialLoading && (

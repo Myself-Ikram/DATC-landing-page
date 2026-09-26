@@ -8,6 +8,7 @@ interface MultiProductShowcaseProps {
 
 export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onProductChange }) => {
   const [current, setCurrent] = useState<number>(0);
+  const [bgMode, setBgMode] = useState<'rich' | 'white'>('white');
 
   const rootRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -15,6 +16,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
   const wordsRef = useRef<(HTMLDivElement | null)[]>([]);
   const propsGroupRef = useRef<(HTMLDivElement | null)[]>([]);
   const infoRef = useRef<(HTMLDivElement | null)[]>([]);
+  const teaPowderRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const animatingRef = useRef<boolean>(false);
   const idleTweensRef = useRef<gsap.core.Tween[]>([]);
@@ -137,7 +139,6 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     onProductChange?.(nextIndex);
 
     const prevIndex = currentRef.current;
-    const nextProduct = flagshipProducts[nextIndex];
     const prevSlide = slidesRef.current[prevIndex];
     const nextSlide = slidesRef.current[nextIndex];
     const prevPacket = packetsRef.current[prevIndex];
@@ -148,6 +149,8 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     const nextProps = propsGroupRef.current[nextIndex]?.querySelectorAll('.floating-prop');
     const prevInfo = infoRef.current[prevIndex];
     const nextInfo = infoRef.current[nextIndex];
+    const prevPowder = teaPowderRef.current[prevIndex];
+    const nextPowder = teaPowderRef.current[nextIndex];
 
     if (!prevSlide || !nextSlide) {
       animatingRef.current = false;
@@ -192,6 +195,14 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
       });
     }
 
+    if (nextPowder) {
+      const nextWraps = nextPowder.querySelectorAll('.tea-powder-img-wrap');
+      gsap.set(nextWraps.length ? nextWraps : nextPowder, {
+        opacity: 0,
+        scale: 0.78,
+      });
+    }
+
     const DUR = 0.85;
     const EASING = 'power3.inOut';
 
@@ -202,11 +213,16 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
         startIdle(nextIndex);
         if (prevPacket) gsap.set(prevPacket, { opacity: 0 });
         if (prevWord) gsap.set(prevWord, { opacity: 0 });
+        if (prevPowder) {
+          const prevWraps = prevPowder.querySelectorAll('.tea-powder-img-wrap');
+          gsap.set(prevWraps.length ? prevWraps : prevPowder, { opacity: 0 });
+        }
         if (prevSlide) prevSlide.style.zIndex = '5';
       },
     });
 
     // 1. Fluid Background Gradient Transition
+    const nextProduct = flagshipProducts[nextIndex];
     if (rootRef.current) {
       tl.to(
         rootRef.current,
@@ -320,6 +336,38 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     }
     if (nextInfo) {
       animateProductIn(nextIndex, tl, 0.3);
+    }
+
+    // 6. Grounding Tea Powder Zoom Reveal (Renders AFTER complete rendering of the section)
+    if (prevPowder) {
+      const prevWraps = prevPowder.querySelectorAll('.tea-powder-img-wrap');
+      tl.to(
+        prevWraps.length ? prevWraps : prevPowder,
+        {
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.35,
+          ease: 'power2.in',
+        },
+        0
+      );
+    }
+    if (nextPowder) {
+      const nextWraps = nextPowder.querySelectorAll('.tea-powder-img-wrap');
+      gsap.set(nextWraps.length ? nextWraps : nextPowder, {
+        opacity: 0,
+        scale: 0.78,
+      });
+      tl.to(
+        nextWraps.length ? nextWraps : nextPowder,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.85,
+          ease: 'power3.out',
+        },
+        0.75
+      );
     }
 
     return true;
@@ -446,6 +494,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
       const word = wordsRef.current[idx];
       const props = propsGroupRef.current[idx]?.querySelectorAll('.floating-prop');
       const info = infoRef.current[idx];
+      const powder = teaPowderRef.current[idx];
 
       if (slide) {
         slide.style.zIndex = idx === 0 ? '12' : '5';
@@ -481,6 +530,14 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
           y: 0,
         });
       }
+
+      if (powder) {
+        const wraps = powder.querySelectorAll('.tea-powder-img-wrap');
+        gsap.set(wraps.length ? wraps : powder, {
+          opacity: 0,
+          scale: 0.78,
+        });
+      }
     });
 
     startIdle(0);
@@ -488,6 +545,22 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     // Initial entrance choreography for Brand 1
     const introTl = gsap.timeline({ delay: 0.25 });
     animateProductIn(0, introTl, 0);
+
+    // Reveal tea powder with pure Zoom In effect AFTER complete rendering of the section
+    const firstPowder = teaPowderRef.current[0];
+    if (firstPowder) {
+      const firstWraps = firstPowder.querySelectorAll('.tea-powder-img-wrap');
+      introTl.to(
+        firstWraps.length ? firstWraps : firstPowder,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.85,
+          ease: 'power3.out',
+        },
+        0.75
+      );
+    }
 
     return () => {
       introTl.kill();
@@ -501,18 +574,61 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     <div
       ref={rootRef}
       id="flagship-showcase"
-      className="relative w-full h-[100dvh] overflow-hidden select-none touch-none overscroll-none"
+      className={`relative w-full h-[100dvh] overflow-hidden select-none touch-none overscroll-none transition-colors duration-700 ${
+        bgMode === 'rich' ? 'text-white' : 'text-neutral-900'
+      }`}
       style={{
-        background: 'radial-gradient(circle at center center, var(--bg-outer) 0%, var(--bg-inner) 85%)',
+        background:
+          bgMode === 'rich'
+            ? 'radial-gradient(circle at center center, var(--bg-outer) 0%, var(--bg-inner) 85%)'
+            : '#ffffff',
       }}
     >
-      {/* Dynamic ambient color glow */}
+      {/* Dynamic ambient color glow for Rich Color Mode */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-40 blur-3xl transition-colors duration-700"
+        className={`absolute inset-0 pointer-events-none blur-3xl transition-opacity duration-700 ${
+          bgMode === 'rich' ? 'opacity-40' : 'opacity-0'
+        }`}
         style={{
           background: `radial-gradient(ellipse at 50% 40%, ${activeProduct.accentColor} 0%, transparent 60%)`,
         }}
       />
+
+      {/* Floating Theme Canvas Switcher Button (Top Right) */}
+      <div className="fixed top-3.5 sm:top-5 right-3 sm:right-6 md:right-8 z-50 pointer-events-auto">
+        <button
+          type="button"
+          onClick={() => setBgMode((prev) => (prev === 'rich' ? 'white' : 'rich'))}
+          className={`group flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-xl border transition-all duration-300 cursor-pointer shadow-lg active:scale-95 ${
+            bgMode === 'rich'
+              ? 'bg-black/60 border-white/20 text-white hover:bg-black/80 hover:border-white/40'
+              : 'bg-white/90 border-neutral-300 text-neutral-900 hover:bg-white hover:border-neutral-400 shadow-md'
+          }`}
+          aria-label="Toggle between Rich Color and White Canvas background"
+          title={`Switch to ${bgMode === 'rich' ? 'White Canvas' : 'Rich Color Background'}`}
+        >
+          <div className="flex items-center gap-1.5">
+            <span
+              className={`w-2.5 h-2.5 rounded-full transition-transform duration-300 ${
+                bgMode === 'rich'
+                  ? 'bg-amber-400 scale-110 shadow-[0_0_8px_#f59e0b]'
+                  : 'bg-neutral-800 scale-110'
+              }`}
+            />
+            <span className="hidden min-[420px]:inline-block text-[11px] font-medium tracking-wide">
+              {bgMode === 'rich' ? 'Rich Color' : 'White Canvas'}
+            </span>
+          </div>
+
+          <div
+            className={`w-7 h-4 rounded-full p-0.5 transition-colors duration-300 flex items-center ${
+              bgMode === 'rich' ? 'bg-amber-500 justify-end' : 'bg-neutral-300 justify-start'
+            }`}
+          >
+            <div className="w-3 h-3 rounded-full bg-white shadow-sm" />
+          </div>
+        </button>
+      </div>
 
       {/* Slide Containers */}
       {flagshipProducts.map((product, idx) => {
@@ -529,10 +645,89 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
             >
               <span
                 style={{ letterSpacing: '-3px' }}
-                className="text-[22vw] sm:text-[18vw] md:text-[16vw] font-black uppercase leading-none text-white/[0.14] font-serif select-none whitespace-nowrap text-center tracking-[-3px]"
+                className={`text-[22vw] sm:text-[18vw] md:text-[16vw] font-black uppercase leading-none font-serif select-none whitespace-nowrap text-center tracking-[-3px] transition-colors duration-500 ${
+                  bgMode === 'rich' ? 'text-white/[0.14]' : 'text-neutral-900/[0.04]'
+                }`}
               >
                 {product.watermarkWord}
               </span>
+            </div>
+
+            {/* Authentic Grounding Tea Powder Layer: Left-only on small devices (<md) to avoid the bottom-right call button; dynamic opposite side on md+ */}
+            <div
+              ref={(el) => { teaPowderRef.current[idx] = el; }}
+              className="absolute inset-0 pointer-events-none z-[6] overflow-hidden select-none"
+            >
+              {product.id === 'mahek' ? (
+                <>
+                  {/* Small devices (< md): Anchored on the LEFT to stay completely clear of the bottom-right call button */}
+                  <div className="tea-powder-img-wrap block md:hidden absolute -bottom-1 left-0 w-[48vw] sm:w-[40vw] max-w-[280px] pointer-events-none origin-bottom-left">
+                    <img
+                      src="/tea-powder-elachi-l.png"
+                      alt="Assam CTC Tea Powder with Green Cardamom Pods"
+                      className={`w-full h-auto object-contain transition-all duration-700 ${
+                        bgMode === 'rich'
+                          ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
+                          : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
+                      }`}
+                    />
+                  </div>
+
+                  {/* Desktop (md+): Anchored on the RIGHT opposite to the text on the left */}
+                  <div className="tea-powder-img-wrap hidden md:block absolute -bottom-1 md:bottom-0 right-0 w-[38vw] md:w-[32vw] max-w-[480px] pointer-events-none origin-bottom-right">
+                    <img
+                      src="/tea-powder-elachi-r.png"
+                      alt="Assam CTC Tea Powder with Green Cardamom Pods"
+                      className={`w-full h-auto object-contain transition-all duration-700 ${
+                        bgMode === 'rich'
+                          ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
+                          : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
+                      }`}
+                    />
+                  </div>
+                </>
+              ) : product.id === 'star-goodluck' ? (
+                /* Star GoodLuck: On the LEFT for all device sizes (leaves right side free for call button on mobile & text on desktop) */
+                <div className="tea-powder-img-wrap absolute -bottom-1 sm:bottom-0 left-0 w-[58vw] sm:w-[50vw] md:w-[44vw] max-w-[620px] pointer-events-none origin-bottom-left">
+                  <img
+                    src="/tea-powder-l.png"
+                    alt="Pure Assam CTC Tea Powder Scatter"
+                    className={`w-full h-auto object-contain transition-all duration-700 ${
+                      bgMode === 'rich'
+                        ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
+                        : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
+                    }`}
+                  />
+                </div>
+              ) : (
+                <>
+                  {/* Small devices (< md): Anchored on the LEFT to stay completely clear of the bottom-right call button */}
+                  <div className="tea-powder-img-wrap block md:hidden absolute -bottom-1 left-0 w-[55vw] sm:w-[44vw] max-w-[320px] pointer-events-none origin-bottom-left">
+                    <img
+                      src="/tea-powder-l.png"
+                      alt="Pure Assam CTC Tea Powder"
+                      className={`w-full h-auto object-contain transition-all duration-700 ${
+                        bgMode === 'rich'
+                          ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
+                          : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
+                      }`}
+                    />
+                  </div>
+
+                  {/* Desktop (md+): Anchored on the RIGHT opposite to the text on the left */}
+                  <div className="tea-powder-img-wrap hidden md:block absolute -bottom-1 md:bottom-0 right-0 w-[36vw] md:w-[30vw] max-w-[460px] pointer-events-none origin-bottom-right">
+                    <img
+                      src="/tea-powder-r.png"
+                      alt="Pure Assam CTC Tea Powder"
+                      className={`w-full h-auto object-contain transition-all duration-700 ${
+                        bgMode === 'rich'
+                          ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
+                          : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
+                      }`}
+                    />
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Central Stage: Packet + Floating Props */}
@@ -631,14 +826,20 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   : 'items-center text-center sm:items-end sm:text-right sm:right-10 md:right-16'
               }`}
             >
-              {/* Brand Title: Kinetic Letter-by-Letter Wave in Pure White */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight font-serif mb-0">
+              {/* Brand Title: Kinetic Letter-by-Letter Wave */}
+              <h2
+                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight font-serif mb-0 transition-colors duration-500 ${
+                  bgMode === 'rich' ? 'text-white' : 'text-neutral-950'
+                }`}
+              >
                 {product.name.split(' ').map((word, wIdx) => (
                   <span key={wIdx} className="inline-block whitespace-nowrap mr-2.5 sm:mr-3.5 last:mr-0">
                     {word.split('').map((char, cIdx) => (
                       <span
                         key={cIdx}
-                        className="info-letter-wave inline-block text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]"
+                        className={`info-letter-wave inline-block transition-colors duration-500 ${
+                          bgMode === 'rich' ? 'text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]' : 'text-neutral-950'
+                        }`}
                       >
                         {char}
                       </span>
@@ -647,13 +848,21 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                 ))}
               </h2>
 
-              {/* Tagline directly after the Brand Name for all screen sizes (No top margin/padding) */}
-              <p className="info-tagline font-serif italic text-sm sm:text-base md:text-lg text-white/95 font-medium tracking-wide mt-0 pt-0 mb-2 sm:mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+              {/* Tagline directly after the Brand Name */}
+              <p
+                className={`info-tagline font-serif italic text-sm sm:text-base md:text-lg font-medium tracking-wide mt-0 pt-0 mb-2 sm:mb-3 transition-colors duration-500 ${
+                  bgMode === 'rich' ? 'text-white/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]' : 'text-neutral-700 font-semibold'
+                }`}
+              >
                 &ldquo;{product.tagline}&rdquo;
               </p>
 
-              {/* Description: Hidden on mobile (<sm), shown on desktop (sm+) */}
-              <p className="info-desc-slide hidden sm:block text-white/80 text-sm md:text-base leading-relaxed">
+              {/* Description */}
+              <p
+                className={`info-desc-slide hidden sm:block text-sm md:text-base leading-relaxed transition-colors duration-500 ${
+                  bgMode === 'rich' ? 'text-white/80' : 'text-neutral-600'
+                }`}
+              >
                 {product.description}
               </p>
             </div>
@@ -662,7 +871,11 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
       })}
 
       {/* Bottom Center Scroll/Swipe Hint */}
-      <div className="hidden sm:flex absolute bottom-3 left-1/2 -translate-x-1/2 z-20 text-[10px] sm:text-xs text-white/40 tracking-widest uppercase items-center gap-1.5 pointer-events-none">
+      <div
+        className={`hidden sm:flex absolute bottom-3 left-1/2 -translate-x-1/2 z-20 text-[10px] sm:text-xs tracking-widest uppercase items-center gap-1.5 pointer-events-none transition-colors duration-500 ${
+          bgMode === 'rich' ? 'text-white/40' : 'text-neutral-400'
+        }`}
+      >
         <span>Scroll or swipe to switch blend</span>
       </div>
     </div>
