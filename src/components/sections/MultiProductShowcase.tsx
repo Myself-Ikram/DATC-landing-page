@@ -716,6 +716,34 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     />
                   </div>
                 </>
+              ) : product.id === 'diamond-mixture' ? (
+                <>
+                  {/* Small devices (< md): Anchored on the LEFT to stay completely clear of the bottom-right call button */}
+                  <div className="tea-powder-img-wrap block md:hidden absolute -bottom-1 left-0 w-[48vw] sm:w-[40vw] max-w-[280px] pointer-events-none origin-bottom-left">
+                    <img
+                      src="/tea-powder-mixture-l.png"
+                      alt="Diamond Mixture Assam CTC Tea Powder"
+                      className={`w-full h-auto object-contain transition-all duration-700 ${
+                        bgMode === 'rich'
+                          ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
+                          : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
+                      }`}
+                    />
+                  </div>
+
+                  {/* Desktop (md+): Anchored on the RIGHT opposite to the text on the left */}
+                  <div className="tea-powder-img-wrap hidden md:block absolute -bottom-1 md:bottom-0 right-0 w-[38vw] md:w-[32vw] max-w-[480px] pointer-events-none origin-bottom-right">
+                    <img
+                      src="/tea-powder-mixture-r.png"
+                      alt="Diamond Mixture Assam CTC Tea Powder"
+                      className={`w-full h-auto object-contain transition-all duration-700 ${
+                        bgMode === 'rich'
+                          ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
+                          : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
+                      }`}
+                    />
+                  </div>
+                </>
               ) : (
                 <>
                   {/* Small devices (< md): Anchored on the LEFT to stay completely clear of the bottom-right call button */}
