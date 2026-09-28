@@ -42,7 +42,7 @@ export function Footer() {
               </span>
             </a>
             <p className="text-sm text-white/60 leading-relaxed mb-6 max-w-sm">
-              Bringing India's finest garden-fresh Assam CTC teas directly to homes, tea stalls, and regional distributors since {company.founded}.
+              Star GoodLuck Tea, Mahek Elaichi, and Diamond Mix are master brands packaged & distributed by Diamond Assam Tea Company (DATC). Mahbubnagar, Telangana.
             </p>
 
             {/* Social Icons with Coming Soon toast */}

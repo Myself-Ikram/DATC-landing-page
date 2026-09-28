@@ -116,8 +116,7 @@ export function ContactClient() {
                 animate="visible"
                 className="text-neutral-600 text-sm sm:text-base md:text-lg leading-relaxed font-normal"
               >
-                Have questions regarding dealership distribution across South India, bulk wholesale orders,
-                or our signature blends? Connect directly with our team in Mahbubnagar.
+                Wholesale distribution inquiries for Star GoodLuck Tea, Mahek Elaichi, and bulk Assam CTC blends across South India. Connect directly with our team in Mahbubnagar.
               </motion.p>
             </div>
 
@@ -142,6 +141,9 @@ export function ContactClient() {
                         {company.name}
                       </h2>
                       <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+                        Wholesale Distribution for Star GoodLuck Tea, Mahek & Heritage Blends
+                      </p>
+                      <p className="text-xs text-neutral-500 mt-1 font-normal">
                         Mahbubnagar, Telangana - 509001, India
                       </p>
                     </div>

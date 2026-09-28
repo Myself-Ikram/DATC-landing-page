@@ -135,6 +135,17 @@ export function Preloader({
     >
       {/* Center Logo, Greeting & Tagline */}
       <div className="relative z-10 flex flex-col items-center justify-center select-none pointer-events-auto px-4 text-center">
+        {/* Parent Company Eyebrow */}
+        <motion.span
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.45 }}
+          className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-amber-300/85 mb-3 sm:mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+        >
+          From the House of Diamond Assam Tea Company
+        </motion.span>
+
         {/* Central Brand Logo (Significantly larger size) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}

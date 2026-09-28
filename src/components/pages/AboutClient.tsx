@@ -49,7 +49,7 @@ export function AboutClient() {
           tagColorClass="text-amber-900/90"
           heading="A Quarter Century of Pure Assam Legacy"
           isH1={true}
-          story="Founded in 2000 in Mahbubnagar, Diamond Assam Tea Company brings authentic, garden-fresh CTC teas directly from Upper Assam's premier estates to daily households, tea stalls, and tea lovers across South India."
+          story="In 2000, Diamond Assam Tea Company was established in Mahbubnagar with a singular mission: sourcing authentic CTC teas directly from Upper Assam's premier estates. Under this parent vision, our flagship household brand Star GoodLuck Tea was born, growing over a quarter century into a trusted household name across South India."
           videoSrc="/star-goodluck.mp4"
           glowColorClass="bg-[#F59E0B]/20"
           reverseLayout={false}

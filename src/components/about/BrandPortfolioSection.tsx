@@ -61,17 +61,25 @@ export function BrandPortfolioSection({
           </motion.div>
         </motion.div>
 
-        {/* Row 2: Heading */}
-        <motion.h2
+        {/* Row 2: Eyebrow, Heading & Subtitle */}
+        <motion.div
           variants={fadeInVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-neutral-950 font-bold tracking-tight leading-tight mt-6 sm:mt-8 md:mt-10 text-center"
+          className="mt-6 sm:mt-8 md:mt-10 flex flex-col items-center"
         >
-          One Heritage. 6+ Master Expressions of Assam.
-        </motion.h2>
+          <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-amber-800 bg-amber-500/10 px-3.5 py-1.5 rounded-full border border-amber-500/20 mb-3">
+            The House of Diamond Assam Tea Company
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-neutral-950 font-bold tracking-tight leading-tight text-center">
+            One Heritage. Master Expressions of Assam.
+          </h2>
+          <p className="mt-3 text-neutral-600 text-xs sm:text-sm md:text-base max-w-xl font-normal leading-relaxed text-center">
+            Home to our flagship Star GoodLuck Tea, Mahek Elaichi, Diamond Mixture, and time-honored regional CTC blends.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

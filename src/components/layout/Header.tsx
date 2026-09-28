@@ -58,7 +58,7 @@ export function Header({ activeProduct, activeTab = 'products', onTabChange }: H
           <div className="flex items-center justify-center md:justify-start pointer-events-auto">
             <a
               href="/"
-              className="flex items-center group cursor-pointer"
+              className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer"
               aria-label={company.name}
               onClick={(e) => {
                 e.preventDefault();
@@ -68,8 +68,11 @@ export function Header({ activeProduct, activeTab = 'products', onTabChange }: H
               <img
                 src="/main.png"
                 alt={company.name}
-                className="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 object-contain filter drop-shadow-[0_6px_18px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-300"
+                className="w-13 h-13 sm:w-15 sm:h-15 md:w-20 md:h-20 object-contain filter drop-shadow-[0_6px_18px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-300"
               />
+              <span className="inline-flex items-center text-[9px] min-[380px]:text-[10px] md:text-[11px] font-medium tracking-wider uppercase text-neutral-300/90 bg-neutral-950/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 group-hover:border-amber-400/40 group-hover:text-amber-200 transition-all select-none">
+                A Diamond Assam Tea Co. Enterprise
+              </span>
             </a>
           </div>
 
