@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, LayoutGroup } from 'framer-motion';
+import { Sun, Moon } from 'lucide-react';
 import gsap from 'gsap';
 import { flagshipProducts } from '../../data/company';
 
@@ -11,6 +13,10 @@ interface MultiProductShowcaseProps {
 export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onProductChange }) => {
   const [current, setCurrent] = useState<number>(0);
   const [bgMode, setBgMode] = useState<'rich' | 'white'>('white');
+
+  const toggleBgMode = useCallback(() => {
+    setBgMode((prev) => (prev === 'rich' ? 'white' : 'rich'));
+  }, []);
 
   const rootRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -576,9 +582,8 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     <div
       ref={rootRef}
       id="flagship-showcase"
-      className={`relative w-full h-[100dvh] overflow-hidden select-none touch-none overscroll-none transition-colors duration-700 ${
-        bgMode === 'rich' ? 'text-white' : 'text-neutral-900'
-      }`}
+      className={`relative w-full h-[100dvh] overflow-hidden select-none touch-none overscroll-none transition-colors duration-700 ${bgMode === 'rich' ? 'text-white' : 'text-neutral-900'
+        }`}
       style={{
         background:
           bgMode === 'rich'
@@ -588,48 +593,82 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
     >
       {/* Dynamic ambient color glow for Rich Color Mode */}
       <div
-        className={`absolute inset-0 pointer-events-none blur-3xl transition-opacity duration-700 ${
-          bgMode === 'rich' ? 'opacity-40' : 'opacity-0'
-        }`}
+        className={`absolute inset-0 pointer-events-none blur-3xl transition-opacity duration-700 ${bgMode === 'rich' ? 'opacity-40' : 'opacity-0'
+          }`}
         style={{
           background: `radial-gradient(ellipse at 50% 40%, ${activeProduct.accentColor} 0%, transparent 60%)`,
         }}
       />
 
-      {/* Floating Theme Canvas Switcher Button (Top Right) */}
+      {/* Floating Theme Canvas Switcher Button (Top Right: Studio vs Cinema) */}
       <div className="fixed top-3.5 sm:top-5 right-3 sm:right-6 md:right-8 z-50 pointer-events-auto">
-        <button
-          type="button"
-          onClick={() => setBgMode((prev) => (prev === 'rich' ? 'white' : 'rich'))}
-          className={`group flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-xl border transition-all duration-300 cursor-pointer shadow-lg active:scale-95 ${
-            bgMode === 'rich'
-              ? 'bg-black/60 border-white/20 text-white hover:bg-black/80 hover:border-white/40'
-              : 'bg-white/90 border-neutral-300 text-neutral-900 hover:bg-white hover:border-neutral-400 shadow-md'
-          }`}
-          aria-label="Toggle between Rich Color and White Canvas background"
-          title={`Switch to ${bgMode === 'rich' ? 'White Canvas' : 'Rich Color Background'}`}
-        >
-          <div className="flex items-center gap-1.5">
-            <span
-              className={`w-2.5 h-2.5 rounded-full transition-transform duration-300 ${
-                bgMode === 'rich'
-                  ? 'bg-amber-400 scale-110 shadow-[0_0_8px_#f59e0b]'
-                  : 'bg-neutral-800 scale-110'
+        <LayoutGroup id="theme-view-switch">
+          <button
+            type="button"
+            onClick={toggleBgMode}
+            aria-label={`Toggle theme: currently ${bgMode === 'white' ? 'Studio' : 'Cinema'} mode`}
+            className={`relative inline-flex items-center p-1 rounded-full backdrop-blur-xl border transition-all duration-500 select-none shadow-lg cursor-pointer active:scale-95 ${bgMode === 'rich'
+                ? 'bg-neutral-950/80 border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.6)]'
+                : 'bg-white/90 border-neutral-300 shadow-[0_6px_24px_rgba(0,0,0,0.08)]'
               }`}
-            />
-            <span className="hidden min-[420px]:inline-block text-[11px] font-medium tracking-wide">
-              {bgMode === 'rich' ? 'Rich Color' : 'White Canvas'}
-            </span>
-          </div>
-
-          <div
-            className={`w-7 h-4 rounded-full p-0.5 transition-colors duration-300 flex items-center ${
-              bgMode === 'rich' ? 'bg-amber-500 justify-end' : 'bg-neutral-300 justify-start'
-            }`}
           >
-            <div className="w-3 h-3 rounded-full bg-white shadow-sm" />
-          </div>
-        </button>
+            {/* Studio Option */}
+            <div
+              className={`relative p-1.5 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-semibold transition-all duration-300 flex items-center justify-center gap-1.5 select-none ${bgMode === 'white'
+                  ? 'text-neutral-950'
+                  : 'text-neutral-400'
+                }`}
+            >
+              {bgMode === 'white' && (
+                <motion.div
+                  layoutId="theme-active-indicator"
+                  className="absolute inset-0 rounded-full bg-white shadow-[0_2px_12px_rgba(0,0,0,0.18)]"
+                  transition={{ type: 'spring', stiffness: 500, damping: 32 }}
+                />
+              )}
+              <motion.span
+                animate={{ scale: bgMode === 'white' ? 1.06 : 0.92, opacity: bgMode === 'white' ? 1 : 0.65 }}
+                transition={{ type: 'spring', stiffness: 450, damping: 26 }}
+                className="relative z-10 flex items-center justify-center gap-1.5"
+              >
+                <Sun className={`w-3.5 h-3.5 sm:hidden transition-colors duration-300 ${bgMode === 'white' ? 'text-amber-600' : 'text-neutral-400'}`} />
+                <span
+                  className={`hidden sm:inline-block w-1.5 h-1.5 rounded-full transition-colors duration-300 ${bgMode === 'white' ? 'bg-amber-600' : 'bg-neutral-400'
+                    }`}
+                />
+                <span className="hidden sm:inline">Studio</span>
+              </motion.span>
+            </div>
+
+            {/* Cinema Option */}
+            <div
+              className={`relative p-1.5 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-semibold transition-all duration-300 flex items-center justify-center gap-1.5 select-none ${bgMode === 'rich'
+                  ? 'text-white'
+                  : 'text-neutral-500'
+                }`}
+            >
+              {bgMode === 'rich' && (
+                <motion.div
+                  layoutId="theme-active-indicator"
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-neutral-900 to-neutral-800 border border-white/20 shadow-[0_2px_14px_rgba(0,0,0,0.6)]"
+                  transition={{ type: 'spring', stiffness: 500, damping: 32 }}
+                />
+              )}
+              <motion.span
+                animate={{ scale: bgMode === 'rich' ? 1.06 : 0.92, opacity: bgMode === 'rich' ? 1 : 0.65 }}
+                transition={{ type: 'spring', stiffness: 450, damping: 26 }}
+                className="relative z-10 flex items-center justify-center gap-1.5"
+              >
+                <Moon className={`w-3.5 h-3.5 sm:hidden transition-colors duration-300 ${bgMode === 'rich' ? 'text-amber-400' : 'text-neutral-500'}`} />
+                <span
+                  className={`hidden sm:inline-block w-1.5 h-1.5 rounded-full transition-colors duration-300 ${bgMode === 'rich' ? 'bg-amber-400 shadow-[0_0_8px_#f59e0b]' : 'bg-neutral-500'
+                    }`}
+                />
+                <span className="hidden sm:inline">Cinema</span>
+              </motion.span>
+            </div>
+          </button>
+        </LayoutGroup>
       </div>
 
       {/* Slide Containers */}
@@ -647,9 +686,8 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
             >
               <span
                 style={{ letterSpacing: '-3px' }}
-                className={`text-[22vw] sm:text-[18vw] md:text-[16vw] font-black uppercase leading-none font-serif select-none whitespace-nowrap text-center tracking-[-3px] transition-colors duration-500 ${
-                  bgMode === 'rich' ? 'text-white/[0.14]' : 'text-neutral-900/[0.04]'
-                }`}
+                className={`text-[22vw] sm:text-[18vw] md:text-[16vw] font-black uppercase leading-none font-serif select-none whitespace-nowrap text-center tracking-[-3px] transition-colors duration-500 ${bgMode === 'rich' ? 'text-white/[0.14]' : 'text-neutral-900/[0.04]'
+                  }`}
               >
                 {product.watermarkWord}
               </span>
@@ -667,11 +705,10 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     <img
                       src="/tea-powder-elachi-l.png"
                       alt="Assam CTC Tea Powder with Green Cardamom Pods"
-                      className={`w-full h-auto object-contain transition-all duration-700 ${
-                        bgMode === 'rich'
+                      className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
-                      }`}
+                        }`}
                     />
                   </div>
 
@@ -680,11 +717,10 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     <img
                       src="/tea-powder-elachi-r.png"
                       alt="Assam CTC Tea Powder with Green Cardamom Pods"
-                      className={`w-full h-auto object-contain transition-all duration-700 ${
-                        bgMode === 'rich'
+                      className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
-                      }`}
+                        }`}
                     />
                   </div>
                 </>
@@ -695,11 +731,10 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     <img
                       src="/tea-powder-l.png"
                       alt="Pure Assam CTC Tea Powder Scatter"
-                      className={`w-full h-auto object-contain transition-all duration-700 ${
-                        bgMode === 'rich'
+                      className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
-                      }`}
+                        }`}
                     />
                   </div>
 
@@ -708,11 +743,10 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     <img
                       src="/tea-powder-l.png"
                       alt="Pure Assam CTC Tea Powder Scatter"
-                      className={`w-full h-auto object-contain transition-all duration-700 ${
-                        bgMode === 'rich'
+                      className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
-                      }`}
+                        }`}
                     />
                   </div>
                 </>
@@ -723,11 +757,10 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     <img
                       src="/tea-powder-mixture-l.png"
                       alt="Diamond Mixture Assam CTC Tea Powder"
-                      className={`w-full h-auto object-contain transition-all duration-700 ${
-                        bgMode === 'rich'
+                      className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
-                      }`}
+                        }`}
                     />
                   </div>
 
@@ -736,11 +769,10 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     <img
                       src="/tea-powder-mixture-r.png"
                       alt="Diamond Mixture Assam CTC Tea Powder"
-                      className={`w-full h-auto object-contain transition-all duration-700 ${
-                        bgMode === 'rich'
+                      className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
-                      }`}
+                        }`}
                     />
                   </div>
                 </>
@@ -751,11 +783,10 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     <img
                       src="/tea-powder-l.png"
                       alt="Pure Assam CTC Tea Powder"
-                      className={`w-full h-auto object-contain transition-all duration-700 ${
-                        bgMode === 'rich'
+                      className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
-                      }`}
+                        }`}
                     />
                   </div>
 
@@ -764,11 +795,10 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                     <img
                       src="/tea-powder-r.png"
                       alt="Pure Assam CTC Tea Powder"
-                      className={`w-full h-auto object-contain transition-all duration-700 ${
-                        bgMode === 'rich'
+                      className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
-                      }`}
+                        }`}
                     />
                   </div>
                 </>
@@ -848,13 +878,12 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   <img
                     src={product.image}
                     alt={product.name}
-                    className={`${
-                      product.id === 'mahek'
+                    className={`${product.id === 'mahek'
                         ? 'max-h-[46vh] sm:max-h-[62vh] md:max-h-[68vh] lg:max-h-[72vh]'
                         : product.id === 'diamond-mixture'
-                        ? 'max-h-[48vh] sm:max-h-[64vh] md:max-h-[70vh] lg:max-h-[74vh]'
-                        : 'max-h-[50vh] sm:max-h-[66vh] md:max-h-[72vh] lg:max-h-[76vh]'
-                    } w-auto object-contain filter drop-shadow-[0_30px_50px_rgba(0,0,0,0.95)] transition-transform duration-500 group-hover:scale-105`}
+                          ? 'max-h-[48vh] sm:max-h-[64vh] md:max-h-[70vh] lg:max-h-[74vh]'
+                          : 'max-h-[50vh] sm:max-h-[66vh] md:max-h-[72vh] lg:max-h-[76vh]'
+                      } w-auto object-contain filter drop-shadow-[0_30px_50px_rgba(0,0,0,0.95)] transition-transform duration-500 group-hover:scale-105`}
                   />
                 </div>
               </div>
@@ -865,26 +894,23 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
             {/* Mobile (<sm): Centered below packet, NO description, NO tick badges, NO buttons */}
             <div
               ref={(el) => { infoRef.current[idx] = el; }}
-              className={`relative z-20 w-full px-4 sm:px-0 pb-4 sm:pb-0 flex flex-col pointer-events-auto sm:absolute sm:bottom-12 md:bottom-16 sm:max-w-md lg:max-w-lg ${
-                idx % 2 === 0
+              className={`relative z-20 w-full px-4 sm:px-0 pb-4 sm:pb-0 flex flex-col pointer-events-auto sm:absolute sm:bottom-12 md:bottom-16 sm:max-w-md lg:max-w-lg ${idx % 2 === 0
                   ? 'items-center text-center sm:items-start sm:text-left sm:left-10 md:left-16'
                   : 'items-center text-center sm:items-end sm:text-right sm:right-10 md:right-16'
-              }`}
+                }`}
             >
               {/* Brand Title: Kinetic Letter-by-Letter Wave */}
               <h2
-                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight font-serif mb-0 transition-colors duration-500 ${
-                  bgMode === 'rich' ? 'text-white' : 'text-neutral-950'
-                }`}
+                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight font-serif mb-0 transition-colors duration-500 ${bgMode === 'rich' ? 'text-white' : 'text-neutral-950'
+                  }`}
               >
                 {product.name.split(' ').map((word, wIdx) => (
                   <span key={wIdx} className="inline-block whitespace-nowrap mr-2.5 sm:mr-3.5 last:mr-0">
                     {word.split('').map((char, cIdx) => (
                       <span
                         key={cIdx}
-                        className={`info-letter-wave inline-block transition-colors duration-500 ${
-                          bgMode === 'rich' ? 'text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]' : 'text-neutral-950'
-                        }`}
+                        className={`info-letter-wave inline-block transition-colors duration-500 ${bgMode === 'rich' ? 'text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]' : 'text-neutral-950'
+                          }`}
                       >
                         {char}
                       </span>
@@ -895,18 +921,16 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
 
               {/* Tagline directly after the Brand Name */}
               <p
-                className={`info-tagline font-serif italic text-sm sm:text-base md:text-lg font-medium tracking-wide mt-0 pt-0 mb-2 sm:mb-3 transition-colors duration-500 ${
-                  bgMode === 'rich' ? 'text-white/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]' : 'text-neutral-700 font-semibold'
-                }`}
+                className={`info-tagline font-serif italic text-sm sm:text-base md:text-lg font-medium tracking-wide mt-0 pt-0 mb-2 sm:mb-3 transition-colors duration-500 ${bgMode === 'rich' ? 'text-white/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]' : 'text-neutral-700 font-semibold'
+                  }`}
               >
                 &ldquo;{product.tagline}&rdquo;
               </p>
 
               {/* Description */}
               <p
-                className={`info-desc-slide hidden sm:block text-sm md:text-base leading-relaxed transition-colors duration-500 ${
-                  bgMode === 'rich' ? 'text-white/80' : 'text-neutral-600'
-                }`}
+                className={`info-desc-slide hidden sm:block text-sm md:text-base leading-relaxed transition-colors duration-500 ${bgMode === 'rich' ? 'text-white/80' : 'text-neutral-600'
+                  }`}
               >
                 {product.description}
               </p>
@@ -917,9 +941,8 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
 
       {/* Bottom Center Scroll/Swipe Hint */}
       <div
-        className={`hidden sm:flex absolute bottom-3 left-1/2 -translate-x-1/2 z-20 text-[10px] sm:text-xs tracking-widest uppercase items-center gap-1.5 pointer-events-none transition-colors duration-500 ${
-          bgMode === 'rich' ? 'text-white/40' : 'text-neutral-400'
-        }`}
+        className={`hidden sm:flex absolute bottom-3 left-1/2 -translate-x-1/2 z-20 text-[10px] sm:text-xs tracking-widest uppercase items-center gap-1.5 pointer-events-none transition-colors duration-500 ${bgMode === 'rich' ? 'text-white/40' : 'text-neutral-400'
+          }`}
       >
         <span>Scroll or swipe to switch blend</span>
       </div>
