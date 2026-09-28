@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -33,15 +35,16 @@ export function Preloader({
   const [index, setIndex] = useState(0);
   const [timeWord, setTimeWord] = useState<string>('subah');
   const [dimension, setDimension] = useState({
-    width: typeof window !== 'undefined' ? window.innerWidth : 1920,
-    height: typeof window !== 'undefined' ? window.innerHeight : 1080,
+    width: 1920,
+    height: 1080,
   });
 
   useEffect(() => {
     setTimeWord(getTimeOfDayWord());
-  }, []);
-
-  useEffect(() => {
+    setDimension({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
     const handleResize = () => {
       setDimension({
         width: window.innerWidth,
@@ -191,8 +194,12 @@ export function Preloader({
 
       {/* Dennis Snellenberg curved SVG background (Rich Black) */}
       {w > 0 && (
-        <svg className="absolute top-0 w-full h-[calc(100%+300px)] pointer-events-none fill-[#08090A]">
+        <svg
+          suppressHydrationWarning
+          className="absolute top-0 w-full h-[calc(100%+300px)] pointer-events-none fill-[#08090A]"
+        >
           <motion.path
+            suppressHydrationWarning
             variants={curveVariants}
             initial="initial"
             exit="exit"

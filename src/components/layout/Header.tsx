@@ -1,7 +1,10 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { motion, LayoutGroup } from 'framer-motion';
 import { Phone } from 'lucide-react';
 import { company, type FlagshipProduct } from '../../data/company';
+import { usePageTransition } from '../providers/PageTransitionProvider';
 
 export type NavTab = 'products' | 'about' | 'contact';
 
@@ -20,6 +23,14 @@ interface HeaderProps {
 export function Header({ activeProduct, activeTab = 'products', onTabChange }: HeaderProps) {
   const [activeNav, setActiveNav] = useState<NavTab>(activeTab);
 
+  let navigateTo: ((path: string) => void) | null = null;
+  try {
+    const pageTransition = usePageTransition();
+    navigateTo = pageTransition.navigateTo;
+  } catch {
+    // Graceful fallback if rendered outside provider
+  }
+
   useEffect(() => {
     setActiveNav(activeTab);
   }, [activeTab]);
@@ -29,7 +40,13 @@ export function Header({ activeProduct, activeTab = 'products', onTabChange }: H
 
   const handleNavClick = (tab: NavTab) => {
     setActiveNav(tab);
-    onTabChange?.(tab);
+    if (onTabChange) {
+      onTabChange(tab);
+    } else if (navigateTo) {
+      if (tab === 'products') navigateTo('/');
+      else if (tab === 'about') navigateTo('/about');
+      else if (tab === 'contact') navigateTo('/contact');
+    }
   };
 
   return (

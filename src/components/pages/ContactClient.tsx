@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import {
@@ -8,13 +10,9 @@ import {
   ExternalLink,
   ArrowRight,
 } from 'lucide-react';
-import { Header } from '../components/layout/Header';
-import { company, flagshipProducts, type FlagshipProduct } from '../data/company';
-
-interface ContactPageProps {
-  activeProduct?: FlagshipProduct;
-  onNavigate?: (page: 'home' | 'about' | 'contact') => void;
-}
+import { Header } from '@/components/layout/Header';
+import { company, flagshipProducts } from '@/data/company';
+import { usePageTransition } from '@/components/providers/PageTransitionProvider';
 
 const fadeInVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -42,9 +40,9 @@ const cardItemVariants: Variants = {
   },
 };
 
-export function ContactPage({ activeProduct, onNavigate }: ContactPageProps) {
+export function ContactClient() {
   const starProduct = flagshipProducts[1];
-  const currentProduct = activeProduct || starProduct;
+  const { navigateTo } = usePageTransition();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,13 +54,13 @@ export function ContactPage({ activeProduct, onNavigate }: ContactPageProps) {
     <div className="relative w-full min-h-screen bg-white text-neutral-900 selection:bg-amber-500/20 selection:text-amber-900 overflow-x-hidden flex flex-col justify-between">
       {/* Global Navigation Header */}
       <Header
-        activeProduct={currentProduct}
+        activeProduct={starProduct}
         activeTab="contact"
         onTabChange={(tab) => {
           if (tab === 'products') {
-            onNavigate?.('home');
+            navigateTo('/');
           } else if (tab === 'about') {
-            onNavigate?.('about');
+            navigateTo('/about');
           }
         }}
       />
@@ -293,5 +291,3 @@ export function ContactPage({ activeProduct, onNavigate }: ContactPageProps) {
     </div>
   );
 }
-
-export default ContactPage;

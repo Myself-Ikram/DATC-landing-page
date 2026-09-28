@@ -1,3 +1,5 @@
+'use client';
+
 import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 import { company, flagshipProducts } from '../../data/company';
 import { useToast } from '../ui/ToastContext';

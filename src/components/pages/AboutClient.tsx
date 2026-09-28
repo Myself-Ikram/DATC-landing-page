@@ -1,24 +1,20 @@
+'use client';
+
 import { useEffect } from 'react';
-import { Header } from '../components/layout/Header';
-import { flagshipProducts, type FlagshipProduct } from '../data/company';
-import { chaiQuotes } from '../data/chaiQuotes';
+import { Header } from '@/components/layout/Header';
+import { flagshipProducts } from '@/data/company';
+import { chaiQuotes } from '@/data/chaiQuotes';
 import {
   BrandStorySection,
   TornPaperQuoteSection,
   BrandPortfolioSection,
   DealershipCtaSection,
-} from '../components/about';
+} from '@/components/about';
+import { usePageTransition } from '@/components/providers/PageTransitionProvider';
 
-interface AboutPageProps {
-  activeProduct?: FlagshipProduct;
-  onNavigate?: (page: 'home' | 'about' | 'contact') => void;
-}
-
-export function AboutPage({
-  activeProduct: _activeProduct,
-  onNavigate,
-}: AboutPageProps) {
+export function AboutClient() {
   const starProduct = flagshipProducts[1];
+  const { navigateTo } = usePageTransition();
 
   // Scroll to top on page mount
   useEffect(() => {
@@ -33,9 +29,9 @@ export function AboutPage({
         activeTab="about"
         onTabChange={(tab) => {
           if (tab === 'products') {
-            onNavigate?.('home');
+            navigateTo('/');
           } else if (tab === 'contact') {
-            onNavigate?.('contact');
+            navigateTo('/contact');
           }
         }}
       />
@@ -160,4 +156,3 @@ export function AboutPage({
     </div>
   );
 }
-export default AboutPage;
