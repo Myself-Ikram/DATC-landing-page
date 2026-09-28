@@ -704,7 +704,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   <div className="tea-powder-img-wrap block md:hidden absolute -bottom-1 left-0 w-[48vw] sm:w-[40vw] max-w-[280px] pointer-events-none origin-bottom-left">
                     <img
                       src="/tea-powder-elachi-l.png"
-                      alt="Assam CTC Tea Powder with Green Cardamom Pods"
+                      alt="Mahek Elachi Assam CTC Tea Powder with Green Cardamom - Mahbubnagar"
                       className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
@@ -716,7 +716,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   <div className="tea-powder-img-wrap hidden md:block absolute -bottom-1 md:bottom-0 right-0 w-[38vw] md:w-[32vw] max-w-[480px] pointer-events-none origin-bottom-right">
                     <img
                       src="/tea-powder-elachi-r.png"
-                      alt="Assam CTC Tea Powder with Green Cardamom Pods"
+                      alt="Mahek Elachi Assam CTC Tea Powder with Green Cardamom - Mahbubnagar"
                       className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
@@ -730,7 +730,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   <div className="tea-powder-img-wrap block md:hidden absolute -bottom-1 left-0 w-[48vw] sm:w-[40vw] max-w-[280px] pointer-events-none origin-bottom-left">
                     <img
                       src="/tea-powder-l.png"
-                      alt="Pure Assam CTC Tea Powder Scatter"
+                      alt="Star GoodLuck Pure Assam CTC Tea Powder Scatter - Mahbubnagar"
                       className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
@@ -742,7 +742,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   <div className="tea-powder-img-wrap hidden md:block absolute -bottom-1 md:bottom-0 left-0 w-[38vw] md:w-[32vw] max-w-[480px] pointer-events-none origin-bottom-left">
                     <img
                       src="/tea-powder-l.png"
-                      alt="Pure Assam CTC Tea Powder Scatter"
+                      alt="Star GoodLuck Pure Assam CTC Tea Powder Scatter - Mahbubnagar"
                       className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
@@ -756,7 +756,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   <div className="tea-powder-img-wrap block md:hidden absolute -bottom-1 left-0 w-[48vw] sm:w-[40vw] max-w-[280px] pointer-events-none origin-bottom-left">
                     <img
                       src="/tea-powder-mixture-l.png"
-                      alt="Diamond Mixture Assam CTC Tea Powder"
+                      alt="Diamond Mixture Assam CTC Tea Powder - Kadak Hotel Chai Mahbubnagar"
                       className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
@@ -768,7 +768,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   <div className="tea-powder-img-wrap hidden md:block absolute -bottom-1 md:bottom-0 right-0 w-[38vw] md:w-[32vw] max-w-[480px] pointer-events-none origin-bottom-right">
                     <img
                       src="/tea-powder-mixture-r.png"
-                      alt="Diamond Mixture Assam CTC Tea Powder"
+                      alt="Diamond Mixture Assam CTC Tea Powder - Kadak Hotel Chai Mahbubnagar"
                       className={`w-full h-auto object-contain transition-all duration-700 ${bgMode === 'rich'
                           ? 'filter drop-shadow-[0_-6px_22px_rgba(0,0,0,0.85)] brightness-110'
                           : 'filter drop-shadow-[0_-4px_16px_rgba(0,0,0,0.12)]'
@@ -877,7 +877,7 @@ export const MultiProductShowcase: React.FC<MultiProductShowcaseProps> = ({ onPr
                   />
                   <img
                     src={product.image}
-                    alt={product.name}
+                    alt={`${product.name} - Best Tea Powder & Chai in Mahbubnagar | Diamond Assam Tea Company`}
                     className={`${product.id === 'mahek'
                         ? 'max-h-[46vh] sm:max-h-[62vh] md:max-h-[68vh] lg:max-h-[72vh]'
                         : product.id === 'diamond-mixture'

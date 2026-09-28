@@ -29,8 +29,20 @@ export function HomeClient() {
       {/* Multi-Brand Flagship Showcase */}
       <main className="w-full h-full">
         <h1 className="sr-only">
-          Diamond Assam Tea Company — Master Blenders of Premium Assam CTC Teas Since 2000
+          Star GoodLuck Tea & Diamond Assam Tea Company — Best Tea Powder & Kadak Chai in Mahbubnagar
         </h1>
+        <div className="sr-only">
+          <h2>Best Tea in Mahbubnagar, Mahaboobnagar, and Telangana</h2>
+          <p>
+            Diamond Assam Tea Company (DATC), founded in Mahbubnagar in 2000, is acclaimed as the best tea brand and master blender of garden-fresh Assam CTC tea powder across South India.
+          </p>
+          <p>
+            Discover our celebrated household and commercial blends: Star GoodLuck Tea (our signature golden malted morning chai), Mahek Elachi (aromatic cardamom chai), and Diamond Mixture (DMT kadak hotel tea powder). Recognized as the best tea powder in Mahbubnagar (Mahaboobnagar / Mahabubnagar) for rich flavor, deep liquor, and energizing kadak chai patti.
+          </p>
+          <p>
+            Looking for wholesale tea distributors or a tea agency in Mahbubnagar and Jadcherla? Contact Diamond Assam Tea Company for bulk hotel tea powder and authorized dealership opportunities.
+          </p>
+        </div>
         <MultiProductShowcase onProductChange={setCurrentProductIndex} />
       </main>
     </div>

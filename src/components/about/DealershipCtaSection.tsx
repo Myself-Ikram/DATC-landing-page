@@ -151,8 +151,8 @@ export function DealershipCtaSection({ id = 'dealership' }: DealershipCtaSection
           viewport={{ once: true }}
           className="text-neutral-700 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl mb-6 sm:mb-8 font-normal"
         >
-          Join South India&apos;s trusted 25-year tea family. We are actively welcoming authorized dealers,
-          wholesalers, and distributors looking for fast-moving blends with high consumer loyalty.
+          Join South India&apos;s trusted 25-year tea family. We are actively welcoming authorized dealers, tea agency partners,
+          and wholesalers looking for fast-moving Assam tea powder blends with high consumer loyalty in Mahbubnagar, Jadcherla, Wanaparthy, and throughout Telangana.
         </motion.p>
 
         {/* Compact Pillar Cards (Title Only) */}

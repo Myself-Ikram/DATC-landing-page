@@ -9,6 +9,7 @@ import {
   TornPaperQuoteSection,
   BrandPortfolioSection,
   DealershipCtaSection,
+  FaqSection,
 } from '@/components/about';
 import { usePageTransition } from '@/components/providers/PageTransitionProvider';
 
@@ -38,6 +39,9 @@ export function AboutClient() {
 
       {/* Main Content: Normal Vertical Scrolling Flow */}
       <main className="w-full flex flex-col">
+        <h2 className="sr-only">
+          About Diamond Assam Tea Company — 25 Years of Blending the Best Tea Powder & Chai in Mahbubnagar
+        </h2>
         {/* ========================================================================= */}
         {/* SECTION 1: Star GoodLuck Legacy (Brand Story Showcase)                     */}
         {/* ========================================================================= */}
@@ -49,8 +53,7 @@ export function AboutClient() {
           tag="Established 2000 • Mahbubnagar"
           tagColorClass="text-amber-900/90"
           heading="A Quarter Century of Pure Assam Legacy"
-          isH1={true}
-          story="In 2000, Diamond Assam Tea Company was established in Mahbubnagar with a singular mission: sourcing authentic CTC teas directly from Upper Assam's premier estates. Under this parent vision, our flagship household brand Star GoodLuck Tea was born, growing over a quarter century into a trusted household name across South India."
+          story="In 2000, Diamond Assam Tea Company was established in Mahbubnagar with a singular mission: sourcing authentic CTC teas directly from Upper Assam's premier estates. Under this parent vision, our flagship household brand Star GoodLuck Tea was born, earning the reputation as the best tea powder and beloved daily chai across Mahbubnagar, Mahaboobnagar, and South India."
           videoSrc="/star-goodluck.mp4"
           glowColorClass="bg-[#F59E0B]/20"
           reverseLayout={false}
@@ -152,6 +155,13 @@ export function AboutClient() {
         {/* ========================================================================= */}
         <DealershipCtaSection
           id="dealership"
+        />
+
+        {/* ========================================================================= */}
+        {/* SECTION 8: ❓ Frequently Asked Questions (Schema.org Aligned)              */}
+        {/* ========================================================================= */}
+        <FaqSection
+          id="faq"
         />
       </main>
 

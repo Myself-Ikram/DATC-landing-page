@@ -2,24 +2,28 @@ import type { Metadata } from 'next';
 import { ContactClient } from '@/components/pages/ContactClient';
 
 export const metadata: Metadata = {
-  title: 'Wholesale & Dealership Contact',
+  title: 'Wholesale Tea Powder & Dealership in Mahbubnagar | Contact DATC',
   description:
-    'Connect with Diamond Assam Tea Company for dealership distribution across Telangana & South India, bulk wholesale tea inquiries, or direct orders.',
+    'Contact Diamond Assam Tea Company in Mahbubnagar (Mahaboobnagar), Telangana for bulk wholesale Assam CTC tea powder, hotel chai patti supply, and Star GoodLuck Tea dealership.',
   keywords: [
-    'Contact Diamond Assam Tea Company',
-    'Tea Dealership Telangana',
-    'Wholesale Tea Distributorship',
-    'Bulk Assam Tea Orders',
-    'DATC Mahbubnagar Phone',
-    'Tea Suppliers South India',
+    'tea powder wholesale in mahbubnagar',
+    'tea distributors mahbubnagar',
+    'tea agency in mahbubnagar',
+    'hotel tea powder suppliers mahbubnagar',
+    'best tea in mahbubnagar contact',
+    'star goodluck tea wholesale',
+    'diamond assam contact',
+    'tea dealership telangana',
+    'bulk assam ctc tea mahbubnagar',
+    'chai patti wholesale mahbubnagar',
   ],
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Wholesale & Dealership Contact | Diamond Assam Tea Company',
+    title: 'Wholesale Tea Powder & Dealership in Mahbubnagar | DATC',
     description:
-      'Connect with our team in Mahbubnagar for regional distributorship, bulk orders, and dealership partnerships.',
+      'Connect with Diamond Assam Tea Company in Mahbubnagar for regional tea powder distributorship, bulk hotel chai orders, and dealership partnerships.',
     url: 'https://stargoodlucktea.datc.space/contact',
     type: 'website',
     images: [
@@ -27,15 +31,15 @@ export const metadata: Metadata = {
         url: '/all-products-with-bg.png',
         width: 1200,
         height: 630,
-        alt: 'Contact Diamond Assam Tea Company',
+        alt: 'Contact Diamond Assam Tea Company Mahbubnagar',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dealership & Wholesale Inquiries | Diamond Assam Tea Company',
+    title: 'Tea Powder Wholesale & Dealership Mahbubnagar | DATC',
     description:
-      'Partner with Diamond Assam Tea Company for regional tea distribution across South India.',
+      'Partner with Diamond Assam Tea Company for regional tea distribution across Telangana and South India.',
     images: ['/all-products-with-bg.png'],
   },
 };

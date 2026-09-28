@@ -77,7 +77,7 @@ export function BrandPortfolioSection({
             One Heritage. Master Expressions of Assam.
           </h2>
           <p className="mt-3 text-neutral-600 text-xs sm:text-sm md:text-base max-w-xl font-normal leading-relaxed text-center">
-            Home to our flagship Star GoodLuck Tea, Mahek Elaichi, Diamond Mixture, and time-honored regional CTC blends.
+            Blended with pride in Mahbubnagar (Mahaboobnagar), Telangana. Home to our flagship Star GoodLuck Tea, Mahek Elaichi, Diamond Mixture (DMT), Sultan Tea, and time-honored hotel chai blends.
           </p>
         </motion.div>
       </div>

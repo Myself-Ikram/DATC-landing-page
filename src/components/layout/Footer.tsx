@@ -41,7 +41,7 @@ export function Footer() {
               </span>
             </a>
             <p className="text-sm text-white/60 leading-relaxed mb-6 max-w-sm">
-              Star GoodLuck Tea, Mahek Elaichi, and Diamond Mix are master brands packaged & distributed by Diamond Assam Tea Company (DATC). Mahbubnagar, Telangana.
+              Star GoodLuck Tea, Mahek Elachi, and Diamond Mixture are master blends crafted and distributed by Diamond Assam Tea Company (DATC). Renowned as the best tea powder blenders in Mahbubnagar (Mahaboobnagar), Telangana since 2000.
             </p>
 
             {/* Social Icons with Coming Soon toast */}

@@ -148,7 +148,8 @@ export function BrandStorySection({
             </h2>
           )}
 
-          <p className="text-neutral-700 text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-6 font-normal max-w-xl">
+          {/* Story Paragraph with subtle blurred background for clear legibility over tea powder */}
+          <p className="text-neutral-800 text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-6 font-normal max-w-xl p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/75 backdrop-blur-md border border-neutral-200/60 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
             {story}
           </p>
 

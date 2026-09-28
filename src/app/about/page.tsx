@@ -2,25 +2,30 @@ import type { Metadata } from 'next';
 import { AboutClient } from '@/components/pages/AboutClient';
 
 export const metadata: Metadata = {
-  title: 'About Our 25-Year Blending Legacy',
+  title: 'About Our 25-Year Legacy — Best Assam Tea Blenders in Mahbubnagar',
   description:
-    "Discover the story of Diamond Assam Tea Company (DATC). Founded in 2000 in Mahbubnagar, crafting authentic garden-fresh Assam CTC teas directly from Upper Assam's premier tea gardens.",
+    "Discover Diamond Assam Tea Company (DATC), founded in 2000 in Mahbubnagar (Mahaboobnagar). Master blenders of Star GoodLuck Tea, Mahek Elachi, and Diamond Mixture — crafted from pure Upper Assam CTC tea gardens for the finest kadak chai across Telangana.",
   keywords: [
-    'About Diamond Assam Tea Company',
-    'Assam Tea Heritage',
-    'DATC Story',
-    'Tea Blenders Telangana',
-    'Mahbubnagar Tea History',
-    'Assam CTC Tea Gardens',
-    'Star GoodLuck Tea Makers',
+    'best tea in mahbubnagar',
+    'best tea in mahaboobnagar',
+    'best tea powder in mahboobnagar',
+    'best tea brand in mahbubnagar',
+    'diamond assam tea mahbubnagar',
+    'star goodluck tea makers',
+    'mahek elachi tea',
+    'assam tea mahbubnagar',
+    'tea blenders telangana',
+    'chai patti mahbubnagar',
+    'kadak chai history mahbubnagar',
+    'about diamond assam tea company',
   ],
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Our 25-Year Blending Legacy | Diamond Assam Tea Company',
+    title: 'About Our 25-Year Blending Legacy — Best Tea in Mahbubnagar',
     description:
-      'A quarter century of pure Assam tea legacy. Discover our founding story, master blenders, and flagship tea brands.',
+      'A quarter century of pure Assam tea legacy. Discover our founding in Mahbubnagar in 2000, master blenders, and iconic brands Star GoodLuck Tea & Mahek Elachi.',
     url: 'https://stargoodlucktea.datc.space/about',
     type: 'website',
     images: [
@@ -28,15 +33,15 @@ export const metadata: Metadata = {
         url: '/all-products-with-bg.png',
         width: 1200,
         height: 630,
-        alt: 'Diamond Assam Tea Company Heritage and Products',
+        alt: 'Diamond Assam Tea Company Heritage - Best Tea in Mahbubnagar',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Diamond Assam Tea Company | 25+ Years Legacy',
+    title: 'About Diamond Assam Tea Company | 25+ Years Legacy Mahbubnagar',
     description:
-      'A quarter century of pure Assam tea legacy. Discover our founding story and master blends.',
+      'A quarter century of pure Assam tea legacy in Mahbubnagar. Master blenders of Star GoodLuck Tea and Mahek Elachi.',
     images: ['/all-products-with-bg.png'],
   },
 };
