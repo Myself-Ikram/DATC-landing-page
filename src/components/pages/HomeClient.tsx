@@ -28,6 +28,9 @@ export function HomeClient() {
 
       {/* Multi-Brand Flagship Showcase */}
       <main className="w-full h-full">
+        <h1 className="sr-only">
+          Diamond Assam Tea Company — Master Blenders of Premium Assam CTC Teas Since 2000
+        </h1>
         <MultiProductShowcase onProductChange={setCurrentProductIndex} />
       </main>
     </div>

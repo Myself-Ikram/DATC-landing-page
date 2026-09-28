@@ -43,6 +43,7 @@ export function AboutClient() {
         {/* ========================================================================= */}
         <BrandStorySection
           id="legacy"
+          isH1={true}
           sectionPaddingClass="pt-20 sm:pt-24 md:pt-24 pb-12 sm:pb-16 px-4 sm:px-8 lg:px-12"
           watermark="LEGACY"
           tag="Established 2000 • Mahbubnagar"

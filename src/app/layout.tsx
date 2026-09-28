@@ -24,32 +24,135 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://diamondassamtea.com'),
-  title: 'Diamond Assam Tea Company | Premium Assam Teas Since 2000',
+  title: {
+    default: 'Star GoodLuck Tea | Blended by Diamond Assam Tea Co.',
+    template: '%s | Star GoodLuck Tea',
+  },
   description:
-    "Diamond Assam Tea Company (DATC) — Curating India's finest garden-fresh Assam CTC teas since 2000. Home to Star GoodLuck Tea, Diamond Mixture (DMT), Mahek Elachi, Star Tea, Sultan, and Telangana Mixture (TMT).",
+    "Diamond Assam Tea Company (DATC) — Master blenders of India's finest garden-fresh Assam CTC teas since 2000. Home to Star GoodLuck Tea, Diamond Mixture (DMT), Mahek Elachi, Sultan Tea, and Telangana Mixture (TMT). Wholesale distribution across South India.",
   keywords: [
     'Diamond Assam Tea Company',
     'DATC',
+    'Diamond Assam Tea Co',
     'Assam Tea',
+    'Assam CTC Tea',
     'Star GoodLuck Tea',
     'Diamond Mixture Tea',
-    'DMT',
+    'DMT Tea',
     'Mahek Elachi Tea',
     'Telangana Mixture Tea',
-    'TMT',
+    'TMT Tea',
     'Sultan Tea',
-    'Mahbubnagar Tea Company',
+    'Star Tea',
+    'Tea Wholesale Distributors Telangana',
+    'Tea Powder Suppliers South India',
+    'Mahbubnagar Tea Blenders',
+    'Premium Black Tea India',
   ],
+  authors: [{ name: 'Diamond Assam Tea Company', url: 'https://diamondassamtea.com' }],
+  creator: 'Diamond Assam Tea Company',
+  publisher: 'Diamond Assam Tea Company',
+  category: 'Food & Beverage',
+  alternates: {
+    canonical: './',
+  },
   icons: {
-    icon: '/main.png',
+    icon: [
+      { url: '/main.png', sizes: '32x32', type: 'image/png' },
+      { url: '/main.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/main.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
   openGraph: {
-    title: 'Diamond Assam Tea Company | Premium Assam Teas',
-    description:
-      'Experience the gold standard in authentic Assam CTC blends. 25+ years of brewing legacy.',
-    images: ['/all-products-with-bg.png'],
     type: 'website',
+    locale: 'en_IN',
+    url: 'https://diamondassamtea.com',
+    siteName: 'Diamond Assam Tea Company',
+    title: 'Star GoodLuck Tea | Blended by Diamond Assam Tea Co.',
+    description:
+      "Master blenders of India's finest garden-fresh Assam CTC teas since 2000. 25+ years of brewing legacy. Flagship house of Star GoodLuck Tea, Diamond Mixture, and Mahek Elachi.",
+    images: [
+      {
+        url: '/all-products-with-bg.png',
+        width: 1200,
+        height: 630,
+        alt: 'Diamond Assam Tea Company - Master Blends Collection',
+      },
+    ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Star GoodLuck Tea | Blended by Diamond Assam Tea Co.',
+    description:
+      "Master blenders of India's finest garden-fresh Assam CTC teas since 2000. 25+ years of brewing legacy.",
+    images: ['/all-products-with-bg.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://diamondassamtea.com/#organization',
+      name: 'Diamond Assam Tea Company',
+      alternateName: ['DATC', 'Diamond Assam Tea Co.', 'Diamond Assam Tea Company Mahbubnagar'],
+      url: 'https://diamondassamtea.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://diamondassamtea.com/main.png',
+        caption: 'Diamond Assam Tea Company Logo',
+      },
+      foundingDate: '2000',
+      description:
+        "Premier blenders and distributors of authentic Assam CTC black teas across South India. Founded in 2000 in Mahbubnagar, Telangana.",
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Mahbubnagar',
+        addressRegion: 'Telangana',
+        addressCountry: 'IN',
+      },
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: '+91-9985342783',
+          contactType: 'sales and wholesale inquiries',
+          areaServed: 'IN',
+          availableLanguage: ['English', 'Hindi', 'Telugu', 'Urdu'],
+        },
+      ],
+      brand: [
+        { '@type': 'Brand', name: 'Star GoodLuck Tea' },
+        { '@type': 'Brand', name: 'Diamond Mixture (DMT)' },
+        { '@type': 'Brand', name: 'Mahek Elachi' },
+        { '@type': 'Brand', name: 'Star Tea' },
+        { '@type': 'Brand', name: 'Sultan Tea' },
+        { '@type': 'Brand', name: 'Telangana Mixture (TMT)' },
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://diamondassamtea.com/#website',
+      url: 'https://diamondassamtea.com',
+      name: 'Diamond Assam Tea Company',
+      publisher: {
+        '@id': 'https://diamondassamtea.com/#organization',
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -59,6 +162,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className={`${prata.variable} ${sourceSans.variable} antialiased bg-[#050706] text-white selection:bg-amber-500/30 selection:text-amber-200`}>
         <ClientProviders>
           {children}

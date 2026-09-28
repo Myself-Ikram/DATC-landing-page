@@ -2,13 +2,40 @@ import type { Metadata } from 'next';
 import { ContactClient } from '@/components/pages/ContactClient';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Diamond Assam Tea Company',
+  title: 'Wholesale & Dealership Contact',
   description:
-    'Have questions regarding dealership distribution across South India, bulk wholesale orders, or our signature blends? Connect directly with our team in Mahbubnagar.',
+    'Connect with Diamond Assam Tea Company for dealership distribution across Telangana & South India, bulk wholesale tea inquiries, or direct orders.',
+  keywords: [
+    'Contact Diamond Assam Tea Company',
+    'Tea Dealership Telangana',
+    'Wholesale Tea Distributorship',
+    'Bulk Assam Tea Orders',
+    'DATC Mahbubnagar Phone',
+    'Tea Suppliers South India',
+  ],
+  alternates: {
+    canonical: '/contact',
+  },
   openGraph: {
-    title: 'Contact Us | Diamond Assam Tea Company',
+    title: 'Wholesale & Dealership Contact | Diamond Assam Tea Company',
     description:
-      'Get in touch for wholesale dealership distribution and partnership inquiries across South India.',
+      'Connect with our team in Mahbubnagar for regional distributorship, bulk orders, and dealership partnerships.',
+    url: 'https://diamondassamtea.com/contact',
+    type: 'website',
+    images: [
+      {
+        url: '/all-products-with-bg.png',
+        width: 1200,
+        height: 630,
+        alt: 'Contact Diamond Assam Tea Company',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dealership & Wholesale Inquiries | Diamond Assam Tea Company',
+    description:
+      'Partner with Diamond Assam Tea Company for regional tea distribution across South India.',
     images: ['/all-products-with-bg.png'],
   },
 };
