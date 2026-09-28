@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: 'About Our 25-Year Blending Legacy | Diamond Assam Tea Company',
     description:
       'A quarter century of pure Assam tea legacy. Discover our founding story, master blenders, and flagship tea brands.',
-    url: 'https://diamondassamtea.com/about',
+    url: 'https://stargoodlucktea.datc.space/about',
     type: 'website',
     images: [
       {

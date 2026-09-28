@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://diamondassamtea.com'),
+  metadataBase: new URL('https://stargoodlucktea.datc.space'),
   title: {
     default: 'Star GoodLuck Tea | Blended by Diamond Assam Tea Co.',
     template: '%s | Star GoodLuck Tea',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     'Mahbubnagar Tea Blenders',
     'Premium Black Tea India',
   ],
-  authors: [{ name: 'Diamond Assam Tea Company', url: 'https://diamondassamtea.com' }],
+  authors: [{ name: 'Diamond Assam Tea Company', url: 'https://stargoodlucktea.datc.space' }],
   creator: 'Diamond Assam Tea Company',
   publisher: 'Diamond Assam Tea Company',
   category: 'Food & Beverage',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://diamondassamtea.com',
+    url: 'https://stargoodlucktea.datc.space',
     siteName: 'Diamond Assam Tea Company',
     title: 'Star GoodLuck Tea | Blended by Diamond Assam Tea Co.',
     description:
@@ -107,13 +107,13 @@ const structuredData = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://diamondassamtea.com/#organization',
+      '@id': 'https://stargoodlucktea.datc.space/#organization',
       name: 'Diamond Assam Tea Company',
       alternateName: ['DATC', 'Diamond Assam Tea Co.', 'Diamond Assam Tea Company Mahbubnagar'],
-      url: 'https://diamondassamtea.com',
+      url: 'https://stargoodlucktea.datc.space',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://diamondassamtea.com/main.png',
+        url: 'https://stargoodlucktea.datc.space/main.png',
         caption: 'Diamond Assam Tea Company Logo',
       },
       foundingDate: '2000',
@@ -145,11 +145,11 @@ const structuredData = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://diamondassamtea.com/#website',
-      url: 'https://diamondassamtea.com',
+      '@id': 'https://stargoodlucktea.datc.space/#website',
+      url: 'https://stargoodlucktea.datc.space',
       name: 'Diamond Assam Tea Company',
       publisher: {
-        '@id': 'https://diamondassamtea.com/#organization',
+        '@id': 'https://stargoodlucktea.datc.space/#organization',
       },
     },
   ],

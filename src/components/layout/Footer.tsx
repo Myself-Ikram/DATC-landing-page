@@ -16,10 +16,9 @@ export function Footer() {
   };
 
   const navLinks = [
-    { label: 'Flagship Showcase', href: '#flagship-showcase' },
-    { label: 'Tasting Profiles', href: '#sensory-comparison' },
-    { label: 'Our Heritage', href: '#about' },
-    { label: 'Wholesale & Map', href: '#contact' },
+    { label: 'Flagship Showcase', href: '/' },
+    { label: 'Our 25-Year Heritage', href: '/about' },
+    { label: 'Wholesale & Distribution', href: '/contact' },
   ];
 
   return (
@@ -31,7 +30,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16 border-b border-white/10">
           {/* Brand Intro - 4 cols */}
           <div className="lg:col-span-4">
-            <a href="#flagship-showcase" className="inline-flex items-center gap-3 mb-6 group">
+            <a href="/" className="inline-flex items-center gap-3 mb-6 group">
               <img
                 src="/main.png"
                 alt={company.name}
@@ -101,7 +100,7 @@ export function Footer() {
               {flagshipProducts.map((prod) => (
                 <li key={prod.id}>
                   <a
-                    href="#flagship-showcase"
+                    href="/"
                     className="hover:text-amber-300 transition-colors flex items-center gap-2 group"
                   >
                     <span

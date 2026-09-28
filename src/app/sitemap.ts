@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://diamondassamtea.com';
+  const baseUrl = 'https://stargoodlucktea.datc.space';
   const currentDate = new Date();
 
   return [

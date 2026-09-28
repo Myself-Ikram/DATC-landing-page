@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Wholesale & Dealership Contact | Diamond Assam Tea Company',
     description:
       'Connect with our team in Mahbubnagar for regional distributorship, bulk orders, and dealership partnerships.',
-    url: 'https://diamondassamtea.com/contact',
+    url: 'https://stargoodlucktea.datc.space/contact',
     type: 'website',
     images: [
       {

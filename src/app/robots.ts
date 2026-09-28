@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://diamondassamtea.com/sitemap.xml',
-    host: 'https://diamondassamtea.com',
+    sitemap: 'https://stargoodlucktea.datc.space/sitemap.xml',
+    host: 'https://stargoodlucktea.datc.space',
   };
 }

@@ -288,7 +288,7 @@ export function ContactClient() {
 
       {/* Clean, Decent Footer */}
       <footer className="relative z-10 w-full text-center py-6 text-xs text-neutral-500 bg-white border-t border-neutral-100">
-        © {new Date().getFullYear()} {company.name} • Pure Assam Tea Heritage Since {company.founded}
+        © {new Date().getFullYear()} Star GoodLuck Tea • Blended by Diamond Assam Tea Co. • Since {company.founded}
       </footer>
     </div>
   );

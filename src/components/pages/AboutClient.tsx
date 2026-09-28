@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { Header } from '@/components/layout/Header';
-import { flagshipProducts } from '@/data/company';
+import { company, flagshipProducts } from '@/data/company';
 import { chaiQuotes } from '@/data/chaiQuotes';
 import {
   BrandStorySection,
@@ -154,6 +154,11 @@ export function AboutClient() {
           id="dealership"
         />
       </main>
+
+      {/* Clean, Decent Footer */}
+      <footer className="relative z-10 w-full text-center py-6 text-xs text-neutral-500 bg-white border-t border-neutral-100">
+        © {new Date().getFullYear()} Star GoodLuck Tea • Blended by Diamond Assam Tea Co. • Since {company.founded}
+      </footer>
     </div>
   );
 }
