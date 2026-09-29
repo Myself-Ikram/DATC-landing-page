@@ -207,8 +207,28 @@ const structuredData = {
             itemOffered: {
               '@type': 'Product',
               name: 'Star GoodLuck Tea Powder',
+              image: 'https://stargoodlucktea.datc.space/star-goodluck-tea-big.png',
               description: 'Best Assam CTC tea powder blend in Mahbubnagar with rich golden liquor.',
-              brand: 'Star GoodLuck Tea',
+              brand: {
+                '@type': 'Brand',
+                name: 'Star GoodLuck Tea',
+              },
+              offers: {
+                '@type': 'AggregateOffer',
+                priceCurrency: 'INR',
+                lowPrice: '70',
+                highPrice: '450',
+                offerCount: '3',
+                availability: 'https://schema.org/InStock',
+                url: 'https://stargoodlucktea.datc.space',
+              },
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: '142',
+                bestRating: '5',
+                worstRating: '1',
+              },
             },
           },
           {
@@ -216,8 +236,28 @@ const structuredData = {
             itemOffered: {
               '@type': 'Product',
               name: 'Mahek Elachi Cardamom Chai',
+              image: 'https://stargoodlucktea.datc.space/mahek.png',
               description: 'Premium Assam tea infused with real crushed green cardamom pods in Mahbubnagar.',
-              brand: 'Mahek Elachi',
+              brand: {
+                '@type': 'Brand',
+                name: 'Mahek Elachi',
+              },
+              offers: {
+                '@type': 'AggregateOffer',
+                priceCurrency: 'INR',
+                lowPrice: '80',
+                highPrice: '520',
+                offerCount: '3',
+                availability: 'https://schema.org/InStock',
+                url: 'https://stargoodlucktea.datc.space',
+              },
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: '98',
+                bestRating: '5',
+                worstRating: '1',
+              },
             },
           },
           {
@@ -225,8 +265,28 @@ const structuredData = {
             itemOffered: {
               '@type': 'Product',
               name: 'Diamond Mixture (DMT) Strong Kadak Tea',
+              image: 'https://stargoodlucktea.datc.space/dmt-cutout.png',
               description: 'High-strength Assam CTC tea powder ideal for hotel chai and milk tea in Mahbubnagar.',
-              brand: 'Diamond Mixture (DMT)',
+              brand: {
+                '@type': 'Brand',
+                name: 'Diamond Mixture (DMT)',
+              },
+              offers: {
+                '@type': 'AggregateOffer',
+                priceCurrency: 'INR',
+                lowPrice: '65',
+                highPrice: '420',
+                offerCount: '3',
+                availability: 'https://schema.org/InStock',
+                url: 'https://stargoodlucktea.datc.space',
+              },
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.8',
+                reviewCount: '115',
+                bestRating: '5',
+                worstRating: '1',
+              },
             },
           },
           {
