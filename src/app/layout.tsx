@@ -169,7 +169,7 @@ const structuredData = {
         longitude: 77.9836853,
       },
       hasMap: 'https://maps.app.goo.gl/NLrYzwxVEsbgeesc7',
-      telephone: '+91-9985342783',
+      telephone: '+91-8555062835',
       priceRange: '₹₹',
       areaServed: [
         { '@type': 'AdministrativeArea', name: 'Mahbubnagar' },
@@ -184,7 +184,7 @@ const structuredData = {
       contactPoint: [
         {
           '@type': 'ContactPoint',
-          telephone: '+91-9985342783',
+          telephone: '+91-8555062835',
           contactType: 'sales and wholesale distribution',
           areaServed: 'IN',
           availableLanguage: ['English', 'Hindi', 'Telugu', 'Urdu'],
@@ -317,7 +317,7 @@ const structuredData = {
           name: 'Where can I buy Star GoodLuck Tea wholesale in Mahbubnagar?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Star GoodLuck Tea and Diamond Assam blends are available directly through Diamond Assam Tea Company’s wholesale and dealership network in Mahbubnagar, Telangana. Contact +91 99853 42783 for bulk dealership orders.',
+            text: 'Star GoodLuck Tea and Diamond Assam blends are available directly through Diamond Assam Tea Company’s wholesale and dealership network in Mahbubnagar, Telangana. Contact +91 85550 62835 for bulk dealership orders.',
           },
         },
         {

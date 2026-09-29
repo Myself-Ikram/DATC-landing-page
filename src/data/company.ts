@@ -2,9 +2,9 @@
 export const company = {
   name: 'Diamond Assam Tea Company',
   shortName: 'DATC',
-  phone: '+919985342783',
-  phoneDisplay: '99853 42783',
-  whatsappNumber: '919985342783',
+  phone: '+918555062835',
+  phoneDisplay: '85550 62835',
+  whatsappNumber: '918555062835',
   email: 'diamondassamteacompany@gmail.com',
   location: 'Mahbubnagar District, Telangana',
   tagline: 'Awaken Your Senses',

@@ -18,7 +18,7 @@ const faqs: FaqItem[] = [
   {
     question: 'Where can I buy Star GoodLuck Tea wholesale in Mahbubnagar?',
     answer:
-      'Star GoodLuck Tea and Diamond Assam blends are available directly through Diamond Assam Tea Company’s wholesale and dealership network in Mahbubnagar, Telangana. Contact our sales desk at +91 99853 42783 for bulk agency supply and retail distribution.',
+      'Star GoodLuck Tea and Diamond Assam blends are available directly through Diamond Assam Tea Company’s wholesale and dealership network in Mahbubnagar, Telangana. Contact our sales desk at +91 85550 62835 for bulk agency supply and retail distribution.',
   },
   {
     question: 'What brands are blended by Diamond Assam Tea Company in Mahbubnagar?',

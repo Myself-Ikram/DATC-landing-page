@@ -40,7 +40,7 @@ export function HomeClient() {
             Discover our celebrated household and commercial blends: Star GoodLuck Tea (our signature golden malted morning chai), Mahek Elachi (aromatic cardamom chai), and Diamond Mixture (DMT kadak hotel tea powder). Recognized as the best tea powder in Mahbubnagar (Mahaboobnagar / Mahabubnagar) for rich flavor, deep liquor, and energizing kadak chai patti.
           </p>
           <p>
-            Looking for wholesale tea distributors or a tea agency in Mahbubnagar and Jadcherla? Contact Diamond Assam Tea Company for bulk hotel tea powder and authorized dealership opportunities.
+            Looking for wholesale tea distributors or a tea agency in Mahbubnagar and Jadcherla? Contact Diamond Assam Tea Company at +91 85550 62835 for bulk hotel tea powder and authorized dealership opportunities.
           </p>
         </div>
         <MultiProductShowcase onProductChange={setCurrentProductIndex} />
